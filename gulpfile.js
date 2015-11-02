@@ -21,7 +21,8 @@ gulp.task('style', function() {
 gulp.task('compileLess', function() {
   return gulp.src(base + 'app.less')
     .pipe(less())
-    .pipe(gulp.dest(base));
+    .pipe(gulp.dest(base))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('autoprefix', ['compileLess'], function () {
@@ -43,5 +44,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('watch', function() {
-
+  gulp.watch(base + '**/*.less', ['style']);
+  gulp.watch(base + '**/*.html').on('change', browserSync.reload);
+  gulp.watch(base + '**/*.js').on('change', browserSync.reload);
 });
