@@ -1,0 +1,14 @@
+{
+  "name": "bf-bookmark-app",
+  "description": "Resource Library for Decentralization",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Backfeed/Bookmark-App",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "underscore": "~1.8.3",
+    "angular": "~1.4.7",
+    "ngstorage": "~0.3.9",
+    "bootstrap": "~3.3.5"
+  }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="qrate">
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Bookmark app</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+  <link rel="stylesheet" href="app.css">
+
+</head>
+
+<body>
+
+  <div ui-view></div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+
+  <!-- VENDORS -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/ngstorage/ngStorage.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+
+  <!-- CONFIG -->
+  <script src="config/config.js"></script>
+  <script src="config/constants.js"></script>
+  <script src="config/routes.js"></script>
+  <script src="config/junk.js"></script>
+  
+  <!-- DIRECTIVES -->
+  <script src="directives/directives.js"></script>
+  
+
+  <!-- SERVICES -->
+  <script src="services/dev.js"></script>
+  <script src="services/services.js"></script>
+  
+
+  <!-- COMPONENTS -->
+  <script src="components/components.js"></script>
+
+  <!-- COMPONENTS | HOME -->
+  <script src="components/home/home.routes.js"></script>
+  <script src="components/home/home.js"></script>
+
+
+  <!-- APP -->
+  <script src="app.js"></script>
+
+</body>
+</html>

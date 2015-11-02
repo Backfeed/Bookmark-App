@@ -1,0 +1,2 @@
+angular.module('qrate.directives', [
+]);
