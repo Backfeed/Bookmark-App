@@ -1,0 +1,19 @@
+{
+  "name": "backfeed-bookmark-app",
+  "version": "1.0.0",
+  "description": "Resource Library for Decentralization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Backfeed/Bookmark-App.git"
+  },
+  "author": "Backfeed <info@backfeed.cc> (http://backfeed.cc/)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Backfeed/Bookmark-App/issues"
+  },
+  "homepage": "https://github.com/Backfeed/Bookmark-App#readme"
+}
