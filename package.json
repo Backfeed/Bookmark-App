@@ -1,14 +1,16 @@
 {
-  "name": "bf-bookmark-app",
-  "version": "1.0.0",
+  "name": "backfeed-bookmark-app",
+  "version": "0.0.0-semantically-released",
   "description": "Resource Library for Decentralization",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git-cz",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Backfeed/Bookmark-App.git"
+    "url": "https://github.com/Backfeed/Bookmark-App.git"
   },
   "author": "Backfeed <info@backfeed.cc> (http://backfeed.cc/)",
   "license": "GPL-3.0",
@@ -18,9 +20,15 @@
   "homepage": "https://github.com/Backfeed/Bookmark-App#readme",
   "devDependencies": {
     "browser-sync": "^2.9.11",
+    "commitizen": "^2.4.0",
+    "cz-conventional-changelog": "^1.1.4",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-less": "^3.0.3",
-    "run-sequence": "^1.1.4"
+    "run-sequence": "^1.1.4",
+    "semantic-release": "^4.3.5"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   }
 }
