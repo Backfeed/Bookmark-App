@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Backfeed/Bookmark-App#readme",
   "devDependencies": {
+    "babel": "^6.0.15",
     "browser-sync": "^2.9.11",
     "commitizen": "^2.4.0",
     "cz-conventional-changelog": "^1.1.4",
