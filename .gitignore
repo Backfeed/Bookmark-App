@@ -2,3 +2,4 @@ node_modules/
 .idea/
 build/
 app/bower_components
+app/app.css
