@@ -6,6 +6,8 @@ function footer() {
   return {
 
     templateUrl: 'directives/footer/footer.html',
+    bindToController: true,
+    scope: {},
     controllerAs: 'ctrl',
     controller: footerCtrl
 
