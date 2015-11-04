@@ -1,0 +1,14 @@
+<div>
+
+  <h3>All tags</h3>
+
+  <ul>
+    {{ ctrl.tags }}
+    <li ng-repeat="tag in ctrl.tags">
+      {{ tag.name }}
+      {{ tag.linksCount }}
+    </li>
+    
+  </ul>
+
+</div>

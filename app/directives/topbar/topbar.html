@@ -1,0 +1,15 @@
+<div>
+  Logo
+  
+  Tokens: 150
+  {{ ctrl.currentUser.tokens }} <!-- empty for now until we implement currentUser service -->
+
+  Reputation: 200
+  {{ ctrl.currentUser.reputation }} <!-- empty for now until we implement currentUser service -->
+
+  Ether: 2000
+  {{ ctrl.currentUser.ehter }} <!-- empty for now until we implement currentUser service -->
+
+  <button ng-click="ctrl.logout()" ng-if="ctrl.currentUser">Logout</button>
+  <button ng-click="ctrl.login()" ng-if="!ctrl.currentUser">login</button>
+</div>
