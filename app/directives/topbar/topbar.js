@@ -6,6 +6,8 @@ function topbar() {
   return {
 
     templateUrl: 'directives/topbar/topbar.html',
+    bindToController: true,
+    scope: {},
     controllerAs: 'ctrl',
     controller: topbarCtrl
 

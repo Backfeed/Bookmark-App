@@ -6,6 +6,8 @@ function sidebar() {
   return {
 
     templateUrl: 'directives/sidebar/sidebar.html',
+    bindToController: true,
+    scope: {},
     controllerAs: 'ctrl',
     controller: sidebarCtrl
 
@@ -22,7 +24,6 @@ function sidebarCtrl(_DEV) {
   angular.extend(ctrl, {
 
     tags: [],
-    foo: 'bar'
 
   });
 
@@ -31,8 +32,6 @@ function sidebarCtrl(_DEV) {
   function init() {
 
     getTags();
-
-    ctrl.bla = 2;
 
   }
 
