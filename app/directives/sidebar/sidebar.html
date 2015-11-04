@@ -1,9 +1,8 @@
-<div>
+<aside class="tags-list-container">
 
   <h3>All tags</h3>
 
-  <ul>
-    {{ ctrl.tags }}
+  <ul class="tags-list">
     <li ng-repeat="tag in ctrl.tags">
       {{ tag.name }}
       {{ tag.linksCount }}
@@ -11,4 +10,4 @@
     
   </ul>
 
-</div>
+</aside>

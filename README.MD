@@ -12,54 +12,6 @@ Consult the [Commit Guidelines](ht~tps://github.com/angular/angular/blob/master/
 	"userId": 2
 }
 
-== endorseTag ==
-{{baseURL}}/evaluations/contributions/:id?fields=senderTokenReputationChange, contributionNewValue
-
-{
-	id: "evaluation id",
-	contributionNewValue: "tag value, not popularity. you will probably need to call for all evaluations and calculate popularity in the app"
-	senderTokenReputationChange: {
-        	agentId: "agent id",
-        	agentNewReputationBalance: 1012,
-        	agentOldReputationBalance: 1015,
-        	agentNewTokenBalance: 600,
-        	agentOldTokenBalance: 600
-	}
-}
-
-== evaluateLink ==
-{{baseURL}}/evaluations/contributions/:id?fields=senderTokenReputationChange, contributionNewValue
-
-Request body:
-{
-    evaluation: "number of stars",
-}
-
-Response:
-{
-	id: "evaluation id",
-    	contributionNewValue: "value of contribution after evaluation",
-    	senderTokenReputationChange: {
-        	agentId: "agent id",
-        	agentNewReputationBalance: 1012,
-        	agentOldReputationBalance: 1015,
-        	agentNewTokenBalance: 600,
-        	agentOldTokenBalance: 600
-    	}
-}
-
-
-== getAllTags ==
-[
-	{
-		"id": 1,
-		"name": "Vitalik",
-		"linksCount": 12,
-		"popularity": 12
-	}
-	...
-]
-
 == getAgent ==
 {{baseURL}}/agents/:id?fields=name,handles,collaborations
 
@@ -87,47 +39,7 @@ Response:
     ]
 }
 
-== getLinksByTag ==
-(tagId)
-[
-	{
-		"id": 12,
-		"title": "URL Title",
-		"url": "http://...",
-		"rank": *1.0-5.0*,
-		"tags": [
-			{
-				"id": 1,
-				"name": "Vitalik",
-				"popularity": 12
-			}
-			...
-		]
-	}
-	...
-]
-
-== getLinksAndTagsByQuery ==
-
-[
-	{
-		"resultType": "tag",
-		"id": 12,
-		"name": "Vitalik",
-		"linksCount": 12,
-		"popularity": 12
-	},
-	{
-		"resultType": "link",
-		"id": 12,
-		"title": "URL Title",
-		"url": "http://...",
-		"rank": *1.0-5.0*
-	}
-	...
-]
-
-== sendLink ==
+== submitUrlAndTags ==
 {{baseURL}}/contributions?type=URLAndTags
 
 notice you'll have to make a distinct "get agent" call to get back the new reputation of the contributor in case you get evaluation IDs back.
@@ -168,9 +80,8 @@ response:
     ]
 }
 
-
-
-== addTagToLink ==
+== submitTags ==
+{{baseURL}}/contributions?type=Tags
 
 Request body:
 {
@@ -203,4 +114,91 @@ Response:
         }
     ]
 }
+
+== endorseTag ==
+{{baseURL}}/evaluations/contributions/:id?fields=senderTokenReputationChange, contributionNewValue
+
+{
+	id: "evaluation id",
+	contributionNewValue: "tag value, not popularity. you will probably need to call for all evaluations and calculate popularity in the app"
+	senderTokenReputationChange: {
+        	agentId: "agent id",
+        	agentNewReputationBalance: 1012,
+        	agentOldReputationBalance: 1015,
+        	agentNewTokenBalance: 600,
+        	agentOldTokenBalance: 600
+	}
+}
+
+== evaluateLink ==
+{{baseURL}}/evaluations/contributions/:id?fields=senderTokenReputationChange, contributionNewValue
+
+Request body:
+{
+    evaluation: "number of stars",
+}
+
+Response:
+{
+	id: "evaluation id",
+    	contributionNewValue: "value of contribution after evaluation",
+    	senderTokenReputationChange: {
+        	agentId: "agent id",
+        	agentNewReputationBalance: 1012,
+        	agentOldReputationBalance: 1015,
+        	agentNewTokenBalance: 600,
+        	agentOldTokenBalance: 600
+    	}
+}
+
+== getAllTags ==
+[
+	{
+		"id": 1,
+		"name": "Vitalik",
+		"linksCount": 12,
+		"popularity": 12
+	}
+	...
+]
+
+== getLinksByTag ==
+(tagId)
+[
+	{
+		"id": 12,
+		"title": "URL Title",
+		"url": "http://...",
+		"rank": *1.0-5.0*,
+		"tags": [
+			{
+				"id": 1,
+				"name": "Vitalik",
+				"popularity": 12
+			}
+			...
+		]
+	}
+	...
+]
+
+== getLinksAndTagsByQuery ==
+
+[
+	{
+		"resultType": "tag",
+		"id": 12,
+		"name": "Vitalik",
+		"linksCount": 12,
+		"popularity": 12
+	},
+	{
+		"resultType": "link",
+		"id": 12,
+		"title": "URL Title",
+		"url": "http://...",
+		"rank": *1.0-5.0*
+	}
+	...
+]
 ```
