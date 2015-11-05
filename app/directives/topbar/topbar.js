@@ -15,7 +15,7 @@ function topbar() {
 
 }
 
-function topbarCtrl(_DEV, CurrentUser) {
+function topbarCtrl($auth, _DEV, CurrentUser) {
 
   log = _DEV.log('TOPBAR DIRECTIVE');
 
@@ -37,7 +37,9 @@ function topbarCtrl(_DEV, CurrentUser) {
 
   function login() {
 
-    log('this should log me in!');
+    $auth.authenticate('google').then(function(response) {
+      log('google login', response);
+    });
 
   }
 

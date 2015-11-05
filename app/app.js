@@ -6,6 +6,7 @@ angular.module('qrate', [
   'ui.bootstrap.tpls',
   'ngStorage',
   'ui.select',
+  'satellizer',
 
   // APP
   'qrate.config',
