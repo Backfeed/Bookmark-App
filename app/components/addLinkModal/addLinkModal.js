@@ -33,9 +33,9 @@ function AddLinkModalCtrl($uibModalInstance, _DEV, Helpers, CurrentUser, Junk) {
 
     log("refreshTagsToSelectFrom by query:", query);
 
-    var selectedTagsIdsToExclude = Helpers.mapIds(ctrl.newLinkTags);
+    var selectedTagsNamesToExclude = Helpers.mapIds(ctrl.newLinkTags);
 
-    Junk.getTagsByQuery(query, selectedTagsIdsToExclude).then(function(tags) {
+    Junk.getTagsByQuery(query, selectedTagsNamesToExclude).then(function(tags) {
       log("tags for autocomplete", tags);
 
       if (tags.length) {

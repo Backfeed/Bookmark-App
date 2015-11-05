@@ -29,22 +29,19 @@ function Junk($q, _DEV, Resource) {
         {
           name: 'fizz',
           linksCount: 5,
-          popularity: 13,
-          id: 1
+          popularity: 13
         },
   
         {
           name: 'buzz',
           linksCount: 2,
-          popularity: 20,
-          id: 2
+          popularity: 20
         },
   
         {
           name: 'pikachu',
           linksCount: 999,
-          popularity: 42,
-          id: 3
+          popularity: 42
         }
       ]
     );
@@ -53,7 +50,7 @@ function Junk($q, _DEV, Resource) {
 
   }
 
-  function getTagsByQuery(query) {
+  function getTagsByQuery(query, tagsNamesToExclude) {
     var deferred = $q.defer();
 
     if (query === 'foo') {
@@ -67,22 +64,19 @@ function Junk($q, _DEV, Resource) {
         {
           name: 'fizz',
           linksCount: 5,
-          popularity: 13,
-          id: 1
+          popularity: 13
         },
   
         {
           name: 'buzz',
           linksCount: 2,
-          popularity: 20,
-          id: 2
+          popularity: 20
         },
   
         {
           name: 'pikachu',
           linksCount: 999,
-          popularity: 42,
-          id: 3
+          popularity: 42
         }
       ]
     );
