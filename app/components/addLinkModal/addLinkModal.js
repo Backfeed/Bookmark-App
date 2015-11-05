@@ -1,7 +1,9 @@
-angular.module('qrate.components.addLinkModal', [])
+angular.module('qrate.components.addLinkModal', [
+  'qrate.components.addLinkModal.responseModal'
+])
   .controller('AddLinkModalCtrl', AddLinkModalCtrl);
 
-function AddLinkModalCtrl($uibModalInstance, _DEV, Helpers, CurrentUser, Junk) {
+function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helpers, CurrentUser, Junk) {
 
   var log = _DEV.log('ADD LINK MODAL CTRL');
 
@@ -48,20 +50,38 @@ function AddLinkModalCtrl($uibModalInstance, _DEV, Helpers, CurrentUser, Junk) {
   }
 
   function submit() {
+
+    closeModal();
+
     ctrl.isFormProcessing = true;
-    Junk.sendLink({
-      creator: currentUser.id, // discussion about changing to creatorId
+
+    var data = {
+      creator: null, // currentUser.id, // change after implementing CurrentUser // discussion about changing to creatorId
       type: "qrate", 
-      collaboration: 9, // discussion about changing to collaborationId, + answer to wtf it this :)
+      collaboration: 9, // discussion about changing to collaborationId, + answer to wtf is this :)
       content: 
       {
-        title: "Sheker inc.", // waiting for answer as to what is this
         url: ctrl.newLinkUrl,
         evaluation: ctrl.newLinkEvaluation,
         tags: ctrl.newLinkTags
       }
-    }).then(function() {
-      log('submitted!');
+    };
+
+    Junk.sendLink().then(function(response) {
+      log(response);
+      openAddLinkResponseModal(response);
+    });
+
+  }
+
+  function openAddLinkResponseModal(isLinkExists) {
+    var modal = $uibModal.open({
+      templateUrl: 'components/addLinkModal/addLinkResponseModal/addLinkResponseModal.html',
+      controller: 'AddLinkResponseModalCtrl',
+      resolve: { isLinkExists: isLinkExists },
+      bindToController: true,
+      controllerAs: 'ctrl',
+      scope: $rootScope.$new() // can't pass the $scope of this modal to another modal so need to create a new one
     });
   }
 

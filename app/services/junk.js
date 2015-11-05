@@ -104,8 +104,12 @@ function Junk($q, _DEV, Resource) {
 
   }
 
-  function sendLink() {
-    
+  function sendLink(data) {
+    var deferred = $q.defer();
+
+    deferred.resolve(Math.random() > 0.5) // simulate random response if link exists or not
+
+    return deferred.promise;
   }
 
 
