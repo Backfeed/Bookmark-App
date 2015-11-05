@@ -4,6 +4,7 @@ angular.module('qrate', [
   'ui.router', 
   'ui.bootstrap',
   'ui.bootstrap.tpls',
+  'ngMaterial',
   'ngStorage',
   'ui.select',
   'satellizer',
