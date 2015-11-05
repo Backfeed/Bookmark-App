@@ -15,7 +15,7 @@ function sidebar() {
 
 }
 
-function sidebarCtrl(_DEV) {
+function sidebarCtrl(_DEV, Junk) {
 
   log = _DEV.log('SIDEBAR DIRECTIVE');
 
@@ -36,33 +36,9 @@ function sidebarCtrl(_DEV) {
   }
 
   function getTags() {
-
-    // TODO :: replace this with api call
-    ctrl.tags = [
-
-      {
-        name: 'fizz',
-        linksCount: 5,
-        popularity: 13,
-        id: 1
-      },
-
-      {
-        name: 'buzz',
-        linksCount: 2,
-        popularity: 20,
-        id: 2
-      },
-
-      {
-        name: 'pikachu',
-        linksCount: 999,
-        popularity: 42,
-        id: 3
-      }
-      
-    ];
-
+    Junk.getAllTags().then(function(tags){
+      ctrl.tags = tags
+    });
   }
 
 }

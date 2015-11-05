@@ -1,3 +1,4 @@
 angular.module('qrate.components', [
-  'qrate.components.home'
+  'qrate.components.home',
+  'qrate.components.addLinkModal'
 ]);

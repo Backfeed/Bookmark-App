@@ -12,6 +12,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.css">
   <link rel="stylesheet" href="app.css">
 
 </head>
@@ -33,7 +34,9 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
+  <script src="vendor/js/ui-bootstrap-tpls-0.14.3.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.js"></script>
 
   <!-- CONFIG -->
   <script src="config/config.js"></script>
@@ -49,9 +52,11 @@
   
 
   <!-- SERVICES -->
+  <script src="services/helpers.js"></script>
   <script src="services/dev.js"></script>
   <script src="services/resource.js"></script>
   <script src="services/currentUser.js"></script>
+  <script src="services/junk.js"></script>
   <script src="services/services.js"></script>
   
 
@@ -61,6 +66,11 @@
   <!-- COMPONENTS | HOME -->
   <script src="components/home/home.routes.js"></script>
   <script src="components/home/home.js"></script>
+
+  <!-- COMPONENTS | ADD LINK MODAL -->
+  <script src="components/addLinkModal/addLinkModal.js"></script>
+
+
 
 
   <!-- APP -->
