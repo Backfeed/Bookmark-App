@@ -21,7 +21,6 @@ function starRating() {
       function updateStars() {
         scope.stars = [];
         for (var i = 0; i < scope.max; i++) {
-          console.log(i, scope.ratingValue)
           scope.stars.push({
             filled: i < scope.ratingValue
           });
