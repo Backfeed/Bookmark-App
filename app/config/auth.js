@@ -6,7 +6,7 @@ function auth($authProvider, API_URL) {
   
   $authProvider.google({
     url: API_URL + "auth/google",
-    clientId: 'http://196814886246-j21qupem96rbbighru12kee14ucks16u.apps.googleusercontent.com/' // waiting for clientId
+    clientId: '510864204375-t007r3cb1e9tvnoa759q69p73qmjod7i.apps.googleusercontent.com'
   });
 
 }
