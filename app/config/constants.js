@@ -1,2 +1,2 @@
 angular.module('qrate.config.constants', [])
-  .constant('API_URL', 'api.backfeed.cc/');
+  .constant('API_URL', 'http://api.backfeed.cc/');
