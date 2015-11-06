@@ -1,13 +1,15 @@
-<aside class="tags-list-container">
+<aside>
+  <md-content layout-padding class="tags-list-container">
 
-  <h3>All tags</h3>
+      <h3>All tags</h3>
 
-  <ul class="tags-list">
-    <li ng-repeat="tag in ctrl.tags">
-      {{ tag.name }}
-      {{ tag.linksCount }}
-    </li>
-    
-  </ul>
+      <ul class="tags-list">
+        <li ng-repeat="tag in ctrl.tags">
+          {{ tag.name }}
+          {{ tag.linksCount }}
+        </li>
 
+      </ul>
+
+  </md-content>
 </aside>

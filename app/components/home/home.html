@@ -1,10 +1,11 @@
-<sidebar></sidebar>
+<sidebar flex="20"></sidebar>
 
-<section class="main-section">
-    <h1>Explanatory text about Qrate</h1>
-    <input type="search" placeholder="Search Tags/Links" /> <button>Search</button>
-    <br>
+<section class="main-section" flex="40">
+    <img src="/assets/images/main-logo.png" alt="">
+    <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
+    <md-input-container>
+        <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" />
+    </md-input-container>
+    <md-button><md-icon>search</md-icon></md-button>
     or <button ng-click="ctrl.openAddLinkModal()">Add Links</button>
-    <br>
-    <small>Powered by the Backfeed protocol, runs on Ethereum</small>
 </section>

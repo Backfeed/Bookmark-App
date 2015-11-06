@@ -3,15 +3,18 @@
 <html lang="en" ng-app="qrate">
 
 <head>
-  <meta charset="utf-8">
-  <base href="/">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <base href="/" />
 
   <title>Qrate</title>
 
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.css">
   <link rel="stylesheet" href="app.css">
 
@@ -21,7 +24,7 @@
 
   <topbar></topbar>
 
-  <main ui-view></main>
+  <main layout layout-align="space-around" ui-view></main>
 
   <footer></footer>
 
@@ -34,11 +37,12 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
+
   <script src="bower_components/angular-aria/angular-aria.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-material/angular-material.js"></script>
-  <script src="vendor/js/ui-bootstrap-tpls-0.14.3.min.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/satellizer/satellizer.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.js"></script>
 

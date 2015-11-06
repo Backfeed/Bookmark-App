@@ -23,7 +23,7 @@ function sidebarCtrl(_DEV, Junk) {
 
   angular.extend(ctrl, {
 
-    tags: [],
+    tags: []
 
   });
 
