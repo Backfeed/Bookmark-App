@@ -4,14 +4,22 @@ angular.module('qrate.components.home', [
 
 .controller('Home', Home);
 
-function Home($scope, $uibModal, _DEV) {
+function Home($scope, $timeout, $state, $uibModal, _DEV, Junk) {
 
   var log = _DEV.log('HOME CTRL');
 
   var ctrl = this;
 
   angular.extend(ctrl, {
-    openAddLinkModal: openAddLinkModal
+    openAddLinkModal: openAddLinkModal,
+    search: search,
+    rateLink: rateLink,
+    endorseTag: endorseTag,
+    DEendorseTag: DEendorseTag,
+    setTagAsSearchQuery: setTagAsSearchQuery,
+    searchQuery: undefined,
+    linksSearchResults: [],
+    tagsSearchResults: []
   });
 
   init();
@@ -30,6 +38,50 @@ function Home($scope, $uibModal, _DEV) {
       controllerAs: 'ctrl',
       scope: $scope
     });
+  }
+
+  function search() {
+    resetSearchResults();
+    Junk.getLinksAndTagsByQuery(ctrl.searchQuery).then(function(response) {
+      log("links and tags by query", ctrl.searchQuery, response);
+      ctrl.linksSearchResults = response.links;
+      ctrl.tagsSearchResults = response.tags;
+    });
+  }
+
+  function rateLink(link) {
+    $timeout(function() {
+      log("after timeout", link);
+      Junk.evaluateLink(link.id, link.currentUserEvaluation);
+    }, 20);
+  }
+
+  function endorseTag(linkId, tagId) {
+    log("endorse tag", tagId, "of linkId", linkId)
+    Junk.endorseTag(linkId, tagId).then(function(response) {
+      log("CB: endorse tag", response);
+    });
+  }
+
+  function DEendorseTag(linkId, tagId) {
+    log("DEendorse tag", tagId, "of linkId", linkId)
+    Junk.endorseTag(linkId, tagId).then(function(response) {
+      log("CB: DEendorse tag", response);
+    });
+  }
+
+  function setTagAsSearchQuery(tagName) {
+    resetSearchResults();
+    log("links by tag", tagName);
+    Junk.getLinksByTag(tagName).then(function(links) {
+      log("Cb: links by tag", links);
+      ctrl.tagsSearchResults = links;
+    });
+  }
+
+  function resetSearchResults() {
+    ctrl.linksSearchResults = [];
+    ctrl.tagsSearchResults = [];
   }
 
 }

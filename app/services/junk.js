@@ -1,7 +1,7 @@
 angular.module('qrate.services.junk', [])
   .service('Junk', Junk);
 
-function Junk($q, _DEV, Resource) {
+function Junk($q, _DEV, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
@@ -10,6 +10,7 @@ function Junk($q, _DEV, Resource) {
     getAllTags: getAllTags,
     getTagsByQuery: getTagsByQuery,
     endorseTag: endorseTag,
+    DEendorseTag: DEendorseTag,
     getLinksAndTagsByQuery: getLinksAndTagsByQuery,
     getLinksByTag: getLinksByTag,
     addTagsTolink: addTagsTolink,
@@ -28,20 +29,17 @@ function Junk($q, _DEV, Resource) {
       [
         {
           name: 'fizz',
-          linksCount: 5,
-          popularity: 13
+          linksCount: 5
         },
   
         {
           name: 'buzz',
-          linksCount: 2,
-          popularity: 20
+          linksCount: 2
         },
   
         {
           name: 'pikachu',
-          linksCount: 999,
-          popularity: 42
+          linksCount: 999
         }
       ]
     );
@@ -63,20 +61,17 @@ function Junk($q, _DEV, Resource) {
       [
         {
           name: 'fizz',
-          linksCount: 5,
-          popularity: 13
+          linksCount: 5
         },
   
         {
           name: 'buzz',
-          linksCount: 2,
-          popularity: 20
+          linksCount: 2
         },
   
         {
           name: 'pikachu',
-          linksCount: 999,
-          popularity: 42
+          linksCount: 999
         }
       ]
     );
@@ -84,12 +79,92 @@ function Junk($q, _DEV, Resource) {
     return deferred.promise;
   }
 
-  function endorseTag() {
-
+  function endorseTag(linkId, tagId) {
+    return Resource.post("evaluations?fields=senderTokenReputationChange,contributionNewValue", {
+      creator: CurrentUser.get().id,
+      tagId: tagId,
+      linkId: linkId,
+      evaluation: 0
+    });
   }
 
-  function getLinksAndTagsByQuery() {
+  function DEendorseTag(linkId, tagId) {
+    return Resource.post("evaluations?fields=senderTokenReputationChange,contributionNewValue", {
+      creator: CurrentUser.get().id,
+      tagId: tagId,
+      linkId: linkId,
+      evaluation: -1
+    });
+  }
 
+  function getLinksAndTagsByQuery(query) {
+    var deferred = $q.defer();
+    
+    deferred.resolve({
+      links: [
+        {
+          url: "duckduckgo.com",
+          tags: [
+            {
+              name: 'foo',
+              endorsmentCount: 5,
+              contributionId: 100
+            },
+            {
+              name: 'bar',
+              endorsmentCount: 2,
+              contributionId: 101
+            },
+            {
+              name: 'fizz',
+              endorsmentCount: 13,
+              contributionId: 102
+            }
+          ]
+        },
+        {
+          url: "fifa.com",
+          currentUserEvaluation: 3,
+          tags: [
+            {
+              name: 'sport',
+              endorsmentCount: 2,
+              contributionId: 103
+            },
+            {
+              name: 'corruption',
+              endorsmentCount: 6,
+              contributionId: 104
+            },
+            {
+              name: 'waste-of-time',
+              endorsmentCount: 99,
+              contributionId: 105
+            }
+          ]
+        }
+      ],
+
+      tags: [
+        {
+          name: 'fizz',
+          linksCount: 5
+        },
+  
+        {
+          name: 'buzz',
+          linksCount: 2
+        },
+  
+        {
+          name: 'pikachu',
+          linksCount: 999
+        }
+      ]
+
+    });
+
+    return deferred.promise;
   }
 
   function getLinksByTag() {
@@ -100,8 +175,12 @@ function Junk($q, _DEV, Resource) {
 
   }
 
-  function evaluateLink() {
-
+  function evaluateLink(linkId, linkEvaluation) {
+    return Resource.post({
+      creator: CurrentUser.get().id,
+      contributionId: linkId,
+      evaluation: linkEvaluation
+    });
   }
 
   function sendLink(data) {

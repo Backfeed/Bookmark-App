@@ -3,9 +3,52 @@
 <section class="main-section" flex="40">
     <img src="/assets/images/main-logo.png" alt="">
     <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
-    <md-input-container>
-        <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" />
-    </md-input-container>
-    <md-button><md-icon>search</md-icon></md-button>
+    <form ng-submit="ctrl.search()">
+      <md-input-container>
+          <input required type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" />
+      </md-input-container>
+      <md-button><md-icon>search</md-icon></md-button>
+    </form>
     or <button ng-click="ctrl.openAddLinkModal()">Add Links</button>
+
+    <div ng-if="ctrl.tagsSearchResults.length">
+      <ul>
+        <li ng-repeat="tag in ctrl.tagsSearchResults">
+          {{ tag.linksCount }}
+          {{ tag.name }}
+
+           <md-tooltip>
+              <a ng-click="ctrl.endorseTag(link.id, tag.contributionId)">endorse</a>
+              <a ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)">DEendorse</a>
+              <a ng-click="ctrl.setTagAsSearchQuery(tag.name)"><md-icon>search</md-icon></a>
+          </md-tooltip>
+        </li>
+      </ul>
+    </div>
+
+    <div ng-if="ctrl.linksSearchResults.length">
+      <ul>
+        <li ng-repeat="link in ctrl.linksSearchResults">
+          {{ link.url }}
+           <star-rating readonly="link.currentUserEvaluation" 
+                        ng-model="link.currentUserEvaluation" 
+                        on-rating-select="ctrl.rateLink(link)"></star-rating>
+
+           <ul>
+            <li ng-repeat="tag in link.tags">
+              {{ tag.endorsmentCount }}
+              {{ tag.name }}
+
+               <md-tooltip>
+                  <a ng-click="ctrl.endorseTag(link.id, tag.contributionId)">endorse</a>
+                  <a ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)">DEendorse</a>
+                  <a ng-click="ctrl.setTagAsSearchQuery(tag.name)"><md-icon>search</md-icon></a>
+              </md-tooltip>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+
 </section>
