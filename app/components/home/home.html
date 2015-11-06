@@ -1,15 +1,17 @@
 <sidebar flex="20"></sidebar>
 
 <section class="main-section" flex="40">
-    <img src="/assets/images/main-logo.png" alt="">
-    <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
-    <form ng-submit="ctrl.search()">
-      <md-input-container>
-          <input required type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" />
-      </md-input-container>
-      <md-button><md-icon>search</md-icon></md-button>
-    </form>
-    or <button ng-click="ctrl.openAddLinkModal()">Add Links</button>
+    <button ng-click="ctrl.openAddLinkModal()">Add Links</button>
+    <div class="text-center">
+        <img src="/assets/images/main-logo.png" alt="">
+        <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
+        <form ng-submit="ctrl.search()">
+            <md-input-container>
+                <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" />
+            </md-input-container>
+            <md-button><md-icon md-svg-icon="magnifying-glass"></md-icon></md-button>
+        </form>
+    </div>
 
     <div ng-if="ctrl.tagsSearchResults.length">
       <ul>
@@ -17,40 +19,41 @@
         <li ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
           {{ tag.linksCount }}
           {{ tag.name }}
-
-           <md-tooltip>
-              <a ng-click="ctrl.endorseTag(link.id, tag.contributionId)">endorse</a>
-              <a ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)">DEendorse</a>
-              <a ng-click="ctrl.setTagAsSearchQuery(tag.name)"><md-icon>search</md-icon></a>
-          </md-tooltip>
         </li>
       </ul>
     </div>
 
     <div ng-if="ctrl.linksSearchResults.length">
-      <ul>
+      <ul class="links-list">
         <li ng-repeat="link in ctrl.linksSearchResults">
-          {{ link.url }}
-           <star-rating readonly="link.currentUserEvaluation" 
-                        ng-model="link.currentUserEvaluation" 
-                        on-rating-select="ctrl.rateLink(link)"></star-rating>
+            <md-card>
+                <h3 class="link-title">{{ link.title }}</h3>
+                <div class="link-meta" layout layout-align="space-between">
+                    <a class="link-url" ng-href="{{ link.url }}" target="_blank">{{ link.url }}</a>
 
-           <ul>
-            <!-- remove ng click once tag tooltip works -->
-            <li ng-repeat="tag in link.tags" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
-              {{ tag.endorsmentCount }}
-              {{ tag.name }}
+                    <star-rating readonly="link.currentUserEvaluation"
+                                 ng-model="link.currentUserEvaluation"
+                                 on-rating-select="ctrl.rateLink(link)"></star-rating>
+                </div>
 
-               <md-tooltip>
-                  <a ng-click="ctrl.endorseTag(link.id, tag.contributionId)">endorse</a>
-                  <a ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)">DEendorse</a>
-                  <a ng-click="ctrl.setTagAsSearchQuery(tag.name)"><md-icon>search</md-icon></a>
-              </md-tooltip>
-            </li>
-          </ul>
+                <md-chips ng-model="link.tags" placeholder="+ Add a Tag" secondary-placeholder="+ Add a Tag">
+                    <div class="tag-buttons">
+                        <md-button class="md-fab md-raised md-mini" ng-click="ctrl.endorseTag(link.id, tag.contributionId)"><md-icon md-svg-icon="thumbs-up"></md-icon></md-button>
+                        <md-button class="md-fab md-raised md-mini" ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)"><md-icon md-svg-icon="thumbs-down"></md-icon></md-button>
+                        <md-button class="md-fab md-raised md-mini" ng-click="ctrl.setTagAsSearchQuery(tag.name)"><md-icon md-svg-icon="magnifying-glass"></md-icon></md-button>
+                    </div>
+                    <md-chip-template>
+                        <span class="tag-endoresements">{{ $chip.endorsmentCount }}</span>
+                        <md-icon md-svg-icon="thumbs-up"></md-icon>
+                        <span class="vertical-separator"></span>
+                        <!-- remove ng click once tag tooltip works -->
+                        <span class="tag-name" ng-click="ctrl.setTagAsSearchQuery(tag.name)>{{ $chip.name }}</span>
+                    </md-chip-template>
+                </md-chips>
+
+            </md-card>
         </li>
       </ul>
     </div>
-
 
 </section>

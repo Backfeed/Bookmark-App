@@ -24,7 +24,7 @@ function CurrentUser(_DEV, Resource, $localStorage) {
       log('init guest');
       return;
     }
-    
+
     Resource.get('api/me').then(function(user) {
 
       log("init", user);

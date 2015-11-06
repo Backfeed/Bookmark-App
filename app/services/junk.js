@@ -103,7 +103,8 @@ function Junk($q, _DEV, CurrentUser, Resource) {
     deferred.resolve({
       links: [
         {
-          url: "duckduckgo.com",
+          title: "Link Title 1",
+          url: "http://duckduckgo.com",
           tags: [
             {
               name: 'foo',
@@ -123,7 +124,8 @@ function Junk($q, _DEV, CurrentUser, Resource) {
           ]
         },
         {
-          url: "fifa.com",
+          title: "Link Title 2",
+          url: "http://fifa.com",
           currentUserEvaluation: 3,
           tags: [
             {
