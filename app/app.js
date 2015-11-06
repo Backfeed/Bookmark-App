@@ -3,7 +3,6 @@ angular.module('qrate', [
   // VENDORS
   'ui.router', 
   'ui.bootstrap.modal',
-  'ui.bootstrap.rating',
   'ui.bootstrap.tpls',
   'ngMaterial',
   'ngStorage',
