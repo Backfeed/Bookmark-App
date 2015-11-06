@@ -72,10 +72,11 @@ function Home($scope, $timeout, $state, $uibModal, _DEV, Junk) {
 
   function setTagAsSearchQuery(tagName) {
     resetSearchResults();
+    ctrl.searchQuery = tagName;
     log("links by tag", tagName);
     Junk.getLinksByTag(tagName).then(function(links) {
       log("Cb: links by tag", links);
-      ctrl.tagsSearchResults = links;
+      ctrl.linksSearchResults = links;
     });
   }
 

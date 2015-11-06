@@ -13,7 +13,8 @@
 
     <div ng-if="ctrl.tagsSearchResults.length">
       <ul>
-        <li ng-repeat="tag in ctrl.tagsSearchResults">
+        <!-- remove ng click once tag tooltip works -->
+        <li ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
           {{ tag.linksCount }}
           {{ tag.name }}
 
@@ -35,7 +36,8 @@
                         on-rating-select="ctrl.rateLink(link)"></star-rating>
 
            <ul>
-            <li ng-repeat="tag in link.tags">
+            <!-- remove ng click once tag tooltip works -->
+            <li ng-repeat="tag in link.tags" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
               {{ tag.endorsmentCount }}
               {{ tag.name }}
 
