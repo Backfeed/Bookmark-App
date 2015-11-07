@@ -8,7 +8,6 @@ angular.module('qrate', [
   'ngStorage',
   'ui.select',
   'satellizer',
-  'drop-ng',
 
   // APP
   'qrate.config',
