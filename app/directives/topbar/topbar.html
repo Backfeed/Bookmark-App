@@ -2,21 +2,35 @@
   <img src="/assets/images/header-logo.png" alt="">
   <small class="powered-by">By Backfeed and Ethereum</small>
 
-  <div class="user-stats">
-    Tokens: 150
-    <!-- {{ ctrl.currentUser.tokens }} -->
-    Reputation: 200
-    <!-- {{ ctrl.currentUser.reputation }} -->
+  <div class="user-stats text-center">
+    <div class="user-stat"
+         uib-popover="Searching the Qrate library as well as submission of new URLs and Tags cost tokens. If your submissions will be appreciated by the community you will be rewarded with many more in return. If you only search the library without contributing tit, you’ll have to buy tokens from someone who is mostly contributing."
+         popover-title="Tokens"
+         popover-placement="bottom"
+         popover-trigger="mouseenter">
+      My Tokens: 150 <!-- {{ ctrl.currentUser.tokens }} -->
+    </div>
+
+    <div class="user-stat"
+         uib-popover="You put a fraction of reputation on stake every time you evaluate a URL or endorse a tag. If your evaluation or endorsement is indicative of future evaluations, your reputation will rise in the community. When determining the relevance of a tag to a URL our system weights the endorsements according to the evaluators reputation. The more reputation you have, the more your opinion counts and the more you are able to shape the structure of the curated library."
+         popover-title="Reputation"
+         popover-placement="bottom"
+         popover-trigger="mouseenter">
+      My Reputation: 200 <!-- {{ ctrl.currentUser.reputation }} -->
+    </div>
   </div>
   <div class="profile"
        uib-popover="profilePopover.html"
        popover-title="John Doe"
        popover-placement="bottom"
        popover-trigger="mouseenter">
-    John Doe
+    Avatar
   </div>
 
   <md-button class="md-accent md-fab add-link-button" aria-label="Add Links" ng-click="ctrl.openAddLinkModal()">
+    <md-tooltip md-direction="down">
+      Add Links
+    </md-tooltip>
     <md-icon md-svg-icon="plus" style="color: white;"></md-icon>
   </md-button>
   <!-- {{ ctrl.currentUser.ehter }} -->

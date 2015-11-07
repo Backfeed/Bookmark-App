@@ -14,6 +14,7 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
   angular.extend(ctrl, {
     closeModal: closeModal,
     refreshTagsToSelectFrom: refreshTagsToSelectFrom,
+    searchText: null,
     submit: submit,
     tagsToSelectFrom: [],
     isFormProcessing: false
@@ -79,6 +80,7 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
       templateUrl: 'components/addLinkModal/addLinkResponseModal/addLinkResponseModal.html',
       controller: 'AddLinkResponseModalCtrl',
       resolve: { isLinkExists: isLinkExists },
+      size: 'lg',
       bindToController: true,
       controllerAs: 'ctrl',
       scope: $rootScope.$new() // can't pass the $scope of this modal to another modal so need to create a new one

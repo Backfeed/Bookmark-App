@@ -1,9 +1,9 @@
-<sidebar flex="20"></sidebar>
+<sidebar flex="20" class="hide-sm"></sidebar>
 
 <section class="main-section" flex="40">
     <div class="text-center">
         <img src="/assets/images/main-logo.png" alt="">
-        <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
+        <p class="md-body-1 tagline">The decentralization library - by the people for the people</p>
         <form class="search-form" ng-submit="ctrl.search()">
             <md-input-container class="md-block" layout>
                 <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" flex>
@@ -14,15 +14,11 @@
         </form>
     </div>
 
-    <div ng-if="ctrl.tagsSearchResults.length">
-      <ul class="tags-search-results">
-        <!-- remove ng click once tag tooltip works -->
-        <li ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
-          {{ tag.linksCount }}
-          {{ tag.name }}
-        </li>
-      </ul>
-    </div>
+    <section ng-if="ctrl.tagsSearchResults.length" class="tags-search-results" layout="row" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary"
+                   ng-repeat="tag in ctrl.tagsSearchResults"
+                   ng-click="ctrl.setTagAsSearchQuery(tag.name)">{{ tag.name }} {{ tag.linksCount }}</md-button>
+    </section>
 
     <div ng-if="ctrl.linksSearchResults.length">
       <ul class="links-list">
@@ -67,7 +63,7 @@
                                        ng-model="newTag"
                                        on-select="ctrl.addTagToLink($select.selected, link.id)">
 
-                                <ui-select-match placeholder="Add tag">{{ $item.name }}</ui-select-match>
+                                <ui-select-match placeholder="Tag it">{{ $item.name }}</ui-select-match>
 
                                 <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom"
                                                    refresh="ctrl.refreshTagsToSelectFrom($select.search, link.tags)"
