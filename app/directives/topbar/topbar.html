@@ -1,17 +1,19 @@
-<div style="background-color: #4285f4;">
+<md-toolbar class="md-primary" layout="row" layout-align="space-between center">
   <img src="/assets/images/header-logo.png" alt="">
-  <small>Powered by the Backfeed protocol, runs on Ethereum</small>
-  Logo
-  
-  Tokens: 150
-  {{ ctrl.currentUser.tokens }} <!-- empty for now until we implement currentUser service -->
+  <small class="powered-by">By Backfeed and Ethereum</small>
 
-  Reputation: 200
-  {{ ctrl.currentUser.reputation }} <!-- empty for now until we implement currentUser service -->
+  <div class="user-stats">
+    Tokens: 150
+    <!-- {{ ctrl.currentUser.tokens }} -->
+    Reputation: 200
+    <!-- {{ ctrl.currentUser.reputation }} -->
+  </div>
+  <div class="profile">
+    John Doe
 
-  Ether: 2000
-  {{ ctrl.currentUser.ehter }} <!-- empty for now until we implement currentUser service -->
+  </div>
+  <!-- {{ ctrl.currentUser.ehter }} -->
 
-  <button ng-click="ctrl.logout()" ng-if="ctrl.currentUser">Logout</button>
-  <button ng-click="ctrl.login()" ng-if="!ctrl.currentUser">login</button>
-</div>
+</md-toolbar>
+<button ng-click="ctrl.logout()" ng-if="ctrl.currentUser">Logout</button>
+<button ng-click="ctrl.login()" ng-if="!ctrl.currentUser">login</button>

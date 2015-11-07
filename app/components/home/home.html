@@ -1,7 +1,9 @@
 <sidebar flex="20"></sidebar>
 
 <section class="main-section" flex="40">
-    <button ng-click="ctrl.openAddLinkModal()">Add Links</button>
+    <md-button class="md-accent md-fab add-link-button" aria-label="Add Links" ng-click="ctrl.openAddLinkModal()">
+        <md-icon md-svg-icon="plus"></md-icon>
+    </md-button>
     <div class="text-center">
         <img src="/assets/images/main-logo.png" alt="">
         <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
@@ -47,7 +49,7 @@
                         <md-icon md-svg-icon="thumbs-up"></md-icon>
                         <span class="vertical-separator"></span>
                         <!-- remove ng click once tag tooltip works -->
-                        <span class="tag-name" ng-click="ctrl.setTagAsSearchQuery(tag.name)>{{ $chip.name }}</span>
+                        <span class="tag-name" ng-click="ctrl.setTagAsSearchQuery(tag.name)">{{ $chip.name }}</span>
                     </md-chip-template>
                 </md-chips>
 
