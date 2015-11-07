@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
+    "build": "npm install --allow-root && bower install --allow-root",
     "test": "echo \"Error: no test specified\"",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

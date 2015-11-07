@@ -15,48 +15,100 @@
     box-shadow: none;
   }
 
-  .md-chips {
-    font-size: 13px;
-    box-shadow: none;
-    padding-top: 15px;
-    padding-bottom: 0;
-    position: relative;
 
-    &.md-focused {
-      box-shadow: none;
+  .md-chip-input-container {
+    padding-left: 6px;
+    line-height: 28px;
+    height: 28px;
+  }
+}
+
+.tags-search-results {}
+
+.link-tags {
+  list-style: none;
+  display: flex;
+  font-size: 13px;
+  box-shadow: none;
+  padding-bottom: 0;
+  position: relative;
+  padding-left: 0;
+  
+  &>li {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 78px;
+    min-width: 87px;
+
+    &:hover > .tag-buttons-container {
+      display: block;
+    }
+  }
+}
+
+.tag-buttons-container {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.tag-buttons {
+  display: flex;
+
+  .md-button.md-fab.md-mini {
+    line-height: 25px;
+    width: 25px;
+    height: 25px;
+    min-height: 0;
+    margin: 0 2px;
+
+    &:nth-child(1) {
+      background-color: #16b552;
     }
 
-    .md-chip {
-      padding: 0 10px;
-      height: 28px;
-      line-height: 28px;
-
-      &.md-focused {
-        background-color: rgb(224,224,224);
-
-        md-icon {
-          color: rgba(0,0,0,0.54);
-        }
-      }
-
-      .md-chip-remove {
-        display: none;
-      }
-
-      .vertical-separator {
-        padding-left: 1px;
-        background: white;
-        margin-right: 4px;
-      }
+    &:nth-child(2) {
+      background-color: #d52d00;
     }
 
-    .md-chip-input-container {
-      padding-left: 6px;
-      line-height: 28px;
-      height: 28px;
+    &:nth-child(3) {
+      background-color: #2385c7;
     }
   }
 
+  md-icon {
+    width: 15px;
+    height: 15px;
+    color: white !important;
+  }
+}
+
+.new-link-tag {
+  .ui-select-bootstrap>.ui-select-choices {
+    list-style-type: none;
+  }
+}
+
+.link-tag {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 10px;
+  margin-right: 2.5px;
+  margin-left: 2.5px;
+  border-radius: 15px;
+  background-color: #dfdfdc;
+
+  md-icon[md-svg-icon="thumbs-up"] {
+    width: 17px;
+    height: 17px;
+    vertical-align: -3px;
+  }
+}
+
+.vertical-separator {
+  padding-left: 1px;
+  background: white;
+  margin-right: 4px;
 }
 
 .link-title {
@@ -74,11 +126,7 @@
   color: @color-link;
 }
 
-md-icon[md-svg-icon="thumbs-up"] {
-  width: 17px;
-  height: 17px;
-  vertical-align: -3px;
-}
+
 
 .search-form {
   md-input-container.md-icon-float {

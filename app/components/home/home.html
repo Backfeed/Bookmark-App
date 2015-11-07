@@ -15,7 +15,7 @@
     </div>
 
     <div ng-if="ctrl.tagsSearchResults.length">
-      <ul>
+      <ul class="tags-search-results">
         <!-- remove ng click once tag tooltip works -->
         <li ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
           {{ tag.linksCount }}
@@ -37,41 +37,51 @@
                                  on-rating-select="ctrl.rateLink(link)"></star-rating>
                 </div>
 
-                <ul>
+                <ul class="link-tags">
                   <li ng-repeat="tag in link.tags">
-                    <span class="tag-endoresements">{{ tag.endorsmentCount }}</span>
-                    <md-icon md-svg-icon="thumbs-up"></md-icon>
-                    <span class="vertical-separator"></span>
-                    <span class="tag-name" ng-click="ctrl.setTagAsSearchQuery(tag.name)">{{ tag.name }}</span>
-                    
-                    <div class="tag-buttons">
-                        <md-button class="md-fab md-raised md-mini" ng-click="ctrl.endorseTag(link.id, tag.contributionId)"><md-icon md-svg-icon="thumbs-up"></md-icon></md-button>
-                        <md-button class="md-fab md-raised md-mini" ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)"><md-icon md-svg-icon="thumbs-down"></md-icon></md-button>
-                        <md-button class="md-fab md-raised md-mini" ng-click="ctrl.setTagAsSearchQuery(tag.name)"><md-icon md-svg-icon="magnifying-glass"></md-icon></md-button>
-                    </div>
+                      <div class="tag-buttons-container">
+                          <div class="tag-buttons">
+                              <md-button aria-label="Endorse Tag" class="md-fab md-raised md-mini" ng-click="ctrl.endorseTag(link.id, tag.contributionId)">
+                                  <md-icon md-svg-icon="thumbs-up"></md-icon>
+                              </md-button>
+                              <md-button aria-label="Disapprove Tag" class="md-fab md-raised md-mini" ng-click="ctrl.DEendorseTag(link.id, tag.contributionId)">
+                                  <md-icon md-svg-icon="thumbs-down"></md-icon>
+                              </md-button>
+                              <md-button aria-label="Search by Tag" class="md-fab md-raised md-mini" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
+                                  <md-icon md-svg-icon="magnifying-glass"></md-icon>
+                              </md-button>
+                          </div>
+                      </div>
+
+                      <div class="link-tag">
+                          <span class="tag-endorsements">{{ tag.endorsmentCount }}</span>
+                          <md-icon md-svg-icon="thumbs-up"></md-icon>
+                          <span class="vertical-separator"></span>
+                          <span class="tag-name">{{ tag.name }}</span>
+                      </div>
                   </li>
+
+                    <li class="new-link-tag">
+                        <form ng-submit="ctrl.addTagToLink($select.selected, link.id)">
+                            <ui-select reset-search-input="true"
+                                       ng-model="newTag"
+                                       on-select="ctrl.addTagToLink($select.selected, link.id)">
+
+                                <ui-select-match placeholder="Add tag">{{ $item.name }}</ui-select-match>
+
+                                <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom"
+                                                   refresh="ctrl.refreshTagsToSelectFrom($select.search, link.tags)"
+                                                   refresh-delay="50">
+
+                                    <div class="select-contributor flex">
+                                        <div>{{ tag.name }}</div>
+                                    </div>
+
+                                </ui-select-choices>
+                            </ui-select>
+                        </form>
+                    </li>
                 </ul>
-
-                <div class="new-link-tags">
-                  <form ng-submit="ctrl.addTagToLink($select.selected, link.id)">
-                    <ui-select reset-search-input="true"
-                               ng-model="newTag"
-                               on-select="ctrl.addTagToLink($select.selected, link.id)">
-
-                      <ui-select-match placeholder="Add tag">{{ $item.name }}</ui-select-match>
-
-                      <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom"
-                                         refresh="ctrl.refreshTagsToSelectFrom($select.search, link.tags)"
-                                         refresh-delay="50">
-
-                        <div class='select-contributor flex'>
-                          <div>{{ tag.name }}</div>
-                        </div>
-
-                      </ui-select-choices>
-                    </ui-select>
-                  </form>
-                </div>
 
             </md-card>
         </li>
