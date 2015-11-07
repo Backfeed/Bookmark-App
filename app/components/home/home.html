@@ -1,17 +1,16 @@
 <sidebar flex="20"></sidebar>
 
 <section class="main-section" flex="40">
-    <md-button class="md-accent md-fab add-link-button" aria-label="Add Links" ng-click="ctrl.openAddLinkModal()">
-        <md-icon md-svg-icon="plus"></md-icon>
-    </md-button>
     <div class="text-center">
         <img src="/assets/images/main-logo.png" alt="">
         <p class="md-body-1 tagline">Hand picked rating and curating - by the people for the people.</p>
-        <form ng-submit="ctrl.search()">
-            <md-input-container>
-                <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" />
+        <form class="search-form" ng-submit="ctrl.search()">
+            <md-input-container class="md-block" layout>
+                <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" flex>
+                <md-button class="search-button md-icon-button md-primary" aria-label="Search Tags/Links">
+                    <md-icon md-svg-icon="magnifying-glass"></md-icon>
+                </md-button>
             </md-input-container>
-            <md-button><md-icon md-svg-icon="magnifying-glass"></md-icon></md-button>
         </form>
     </div>
 

@@ -4,14 +4,13 @@ angular.module('qrate.components.home', [
 
 .controller('Home', Home);
 
-function Home($scope, $timeout, $state, $uibModal, _DEV, Junk) {
+function Home($timeout, $state,  _DEV, Junk) {
 
   var log = _DEV.log('HOME CTRL');
 
   var ctrl = this;
 
   angular.extend(ctrl, {
-    openAddLinkModal: openAddLinkModal,
     search: search,
     rateLink: rateLink,
     endorseTag: endorseTag,
@@ -29,16 +28,6 @@ function Home($scope, $timeout, $state, $uibModal, _DEV, Junk) {
 
     log('init');
 
-  }
-
-  function openAddLinkModal() {
-    var modal = $uibModal.open({
-      templateUrl: 'components/addLinkModal/addLinkModal.html',
-      controller: 'AddLinkModalCtrl',
-      bindToController: true,
-      controllerAs: 'ctrl',
-      scope: $scope
-    });
   }
 
   function search() {

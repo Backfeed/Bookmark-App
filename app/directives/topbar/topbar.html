@@ -8,12 +8,22 @@
     Reputation: 200
     <!-- {{ ctrl.currentUser.reputation }} -->
   </div>
-  <div class="profile">
+  <div class="profile"
+       uib-popover="profilePopover.html"
+       popover-title="John Doe"
+       popover-placement="bottom"
+       popover-trigger="mouseenter">
     John Doe
-
   </div>
+
+  <md-button class="md-accent md-fab add-link-button" aria-label="Add Links" ng-click="ctrl.openAddLinkModal()">
+    <md-icon md-svg-icon="plus" style="color: white;"></md-icon>
+  </md-button>
   <!-- {{ ctrl.currentUser.ehter }} -->
 
 </md-toolbar>
+
+
+
 <button ng-click="ctrl.logout()" ng-if="ctrl.currentUser">Logout</button>
 <button ng-click="ctrl.login()" ng-if="!ctrl.currentUser">login</button>

@@ -1,15 +1,23 @@
 <aside>
   <md-content layout-padding class="tags-list-container">
+      <md-input-container>
+          <label>Sort by</label>
+          <md-select ng-model="ctrl.userState">
+              <md-option value="links-count">number of links</md-option>
+              <md-option value="alphabetically">alphabetically</md-option>
+              <md-option value="recent-activity">recent activity</md-option>
+          </md-select>
+      </md-input-container>
 
-      <h3>All tags</h3>
-
-      <ul class="tags-list">
-        <li ng-repeat="tag in ctrl.tags">
-          {{ tag.name }}
-          {{ tag.linksCount }}
-        </li>
-
-      </ul>
-
+      <md-list class="tags-list">
+          <md-list-item class="tags-list-titles" layout layout-align="space-between">
+              <span>Tag Name</span>
+              <span>Links</span>
+          </md-list-item>
+          <md-list-item ng-repeat="tag in ctrl.tags" layout layout-align="space-between">
+              <span>{{ tag.name }}</span>
+              <span>{{ tag.linksCount }}</span>
+          </md-list-item>
+      </md-list>
   </md-content>
 </aside>

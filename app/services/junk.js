@@ -174,6 +174,7 @@ function Junk($q, _DEV, CurrentUser, Resource) {
 
     deferred.resolve([
       {
+        title: 'IMFF',
         url: "moo.com",
         tags: [
           {
@@ -194,6 +195,7 @@ function Junk($q, _DEV, CurrentUser, Resource) {
         ]
       },
       {
+        title: 'MOOOO',
         url: "imf.com",
         currentUserEvaluation: 1,
         tags: [
