@@ -52,6 +52,24 @@
                         <span class="tag-name" ng-click="ctrl.setTagAsSearchQuery(tag.name)">{{ $chip.name }}</span>
                     </md-chip-template>
                 </md-chips>
+                <div class="new-link-tags">
+                  <ui-select reset-search-input="true"
+                             ng-model="newTag"
+                             on-select="ctrl.addTagToLink($select.selected, link.id)">
+
+                    <ui-select-match placeholder="Add tag">{{ $item.name }}</ui-select-match>
+
+                    <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom"
+                                       refresh="ctrl.refreshTagsToSelectFrom($select.search)"
+                                       refresh-delay="50">
+
+                      <div class='select-contributor flex'>
+                        <div>{{ tag.name }}</div>
+                      </div>
+
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
 
             </md-card>
         </li>

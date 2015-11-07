@@ -17,6 +17,7 @@ function Home($scope, $timeout, $state, $uibModal, _DEV, Junk) {
     endorseTag: endorseTag,
     DEendorseTag: DEendorseTag,
     setTagAsSearchQuery: setTagAsSearchQuery,
+    addTagToLink: addTagToLink,
     searchQuery: undefined,
     linksSearchResults: [],
     tagsSearchResults: []
@@ -75,8 +76,15 @@ function Home($scope, $timeout, $state, $uibModal, _DEV, Junk) {
     ctrl.searchQuery = tagName;
     log("links by tag", tagName);
     Junk.getLinksByTag(tagName).then(function(links) {
-      log("Cb: links by tag", links);
+      log("CB: links by tag", links);
       ctrl.linksSearchResults = links;
+    });
+  }
+
+  function addTagToLink(tagName, linkId) {
+    log('add tag', tagName, 'to link with id', linkId);
+    Junk.addTagTolink(tagName, linkId).then(function(response) {
+      log('CB: add tag to link', response);
     });
   }
 
