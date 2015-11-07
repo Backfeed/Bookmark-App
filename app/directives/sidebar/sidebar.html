@@ -14,7 +14,11 @@
         <span>Tag Name</span>
         <span>Links</span>
       </md-list-item>
-      <md-list-item ng-repeat="tag in ctrl.tags" layout layout-align="space-between" class="pointer">
+      <md-list-item ng-repeat="tag in ctrl.tags" 
+                    layout 
+                    layout-align="space-between" 
+                    ng-click="ctrl.setTagAsSearchQuery(tag.name)"
+                    class="pointer">
         <span>{{ tag.name }}</span>
         <span>{{ tag.linksCount }}</span>
       </md-list-item>

@@ -15,7 +15,7 @@ function sidebar() {
 
 }
 
-function sidebarCtrl(_DEV, Junk) {
+function sidebarCtrl($rootScope, _DEV, Junk) {
 
   log = _DEV.log('SIDEBAR DIRECTIVE');
 
@@ -23,6 +23,7 @@ function sidebarCtrl(_DEV, Junk) {
 
   angular.extend(ctrl, {
 
+    setTagAsSearchQuery: setTagAsSearchQuery,
     tags: []
 
   });
@@ -33,6 +34,11 @@ function sidebarCtrl(_DEV, Junk) {
 
     getTags();
 
+  }
+
+  function setTagAsSearchQuery(tagName) {
+    // Temp until we move search result to child state
+    $rootScope.$broadcast('setTagAsSearchQuery', tagName);
   }
 
   function getTags() {

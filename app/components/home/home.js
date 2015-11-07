@@ -4,7 +4,7 @@ angular.module('qrate.components.home', [
 
 .controller('Home', Home);
 
-function Home($timeout, $state,  _DEV, Helpers, Junk) {
+function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   var log = _DEV.log('HOME CTRL');
 
@@ -103,5 +103,11 @@ function Home($timeout, $state,  _DEV, Helpers, Junk) {
     ctrl.linksSearchResults = [];
     ctrl.tagsSearchResults = [];
   }
+
+  // Temp until we move search results to child state
+  $scope.$on('setTagAsSearchQuery', function(e, tagName) {
+    log('set tag', tagName, 'as search query');
+    setTagAsSearchQuery(tagName);
+  })
 
 }
