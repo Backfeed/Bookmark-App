@@ -4,7 +4,7 @@ angular.module('qrate.components.home', [
 
 .controller('Home', Home);
 
-function Home($timeout, $state,  _DEV, Junk) {
+function Home($timeout, $state,  _DEV, Helpers, Junk) {
 
   var log = _DEV.log('HOME CTRL');
 
@@ -16,8 +16,10 @@ function Home($timeout, $state,  _DEV, Junk) {
     endorseTag: endorseTag,
     DEendorseTag: DEendorseTag,
     setTagAsSearchQuery: setTagAsSearchQuery,
+    refreshTagsToSelectFrom: refreshTagsToSelectFrom,
     addTagToLink: addTagToLink,
     searchQuery: undefined,
+    tagsToSelectFrom: [],
     linksSearchResults: [],
     tagsSearchResults: []
   });
@@ -68,6 +70,26 @@ function Home($timeout, $state,  _DEV, Junk) {
       log("CB: links by tag", links);
       ctrl.linksSearchResults = links;
     });
+  }
+
+  function refreshTagsToSelectFrom(query, tagsToExclude) {
+    if (! query)
+      return;
+
+    var selectedTagsNamesToExclude = Helpers.mapIds(tagsToExclude);
+
+    log("refreshTagsToSelectFrom by query:", query, "excluding tags", selectedTagsNamesToExclude);
+
+    Junk.getTagsByQuery(query, selectedTagsNamesToExclude).then(function(tags) {
+      log("tags for autocomplete", tags);
+
+      if (tags.length) {
+        ctrl.tagsToSelectFrom = tags;
+      } else {
+        ctrl.tagsToSelectFrom = [{ name: query }]; // give user the option to add a tag that haven't been used yet
+      }
+    });
+
   }
 
   function addTagToLink(tagName, linkId) {
