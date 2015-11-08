@@ -41,5 +41,6 @@ angular.module('qrate', [
       .icon('star-outlined', 'assets/icons/star-outlined.svg')
       .icon('star', 'assets/icons/star.svg')
       .icon('link', 'assets/icons/link.svg')
+      .icon('minus', 'assets/icons/minus.svg')
       .icon('plus', 'assets/icons/plus.svg');
 });

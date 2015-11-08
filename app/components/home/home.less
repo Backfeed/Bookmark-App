@@ -1,16 +1,23 @@
-.tagline {
-  color: #8e8e8e;
+.main-section-inner {
+  max-width: 640px;
+  margin: 50px auto 0;
+}
+
+.search-form {
+  margin-top: 75px;
+  margin-bottom: 55px;
 }
 
 .links-list {
   list-style: none;
+  padding-left: 0;
 
   &>li {
     margin-bottom: 18px;
   }
 
   md-card {
-    padding: 13px 9px 8px 10px;
+    padding: 0 9px 8px 10px;
     border: #dfdfdf 1px solid;
     box-shadow: none;
   }
@@ -119,14 +126,28 @@
   margin-right: 4px;
 }
 
+.link-heading {
+  border-bottom: #dfdfdf 1px solid;
+  align-items: center;
+
+  md-icon {
+    color: lightgrey;
+  }
+}
+
 .link-title {
+  height: 48px;
+  line-height: 52px;
   font-size: 22px;
   font-weight: bold;
   color: @color-primary;
   margin-top: 0;
-  padding-bottom: 10px;
-  border-bottom: #dfdfdf 1px solid;
-  margin-bottom: 8px;
+  margin-bottom: 0;
+}
+
+.link-meta {
+  margin-top: 9px;
+  align-items: baseline;
 }
 
 .link-url {
