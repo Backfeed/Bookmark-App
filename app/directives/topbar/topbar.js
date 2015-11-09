@@ -47,8 +47,12 @@ function topbarCtrl($auth, _DEV, $uibModal, CurrentUser, $scope) {
 
   function login() {
 
-    $auth.authenticate('google').then(function(response) {
-      log('google login', response);
+    var modal = $uibModal.open({
+      templateUrl: 'components/loginModal/loginModal.html',
+      controller: 'LoginModal',
+      bindToController: true,
+      controllerAs: 'ctrl',
+      scope: $scope
     });
 
   }

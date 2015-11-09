@@ -7,6 +7,7 @@ function Junk($q, _DEV, CurrentUser, Resource) {
 
   return {
 
+    signup: signup,
     getAllTags: getAllTags,
     getTagsByQuery: getTagsByQuery,
     endorseTag: endorseTag,
@@ -18,6 +19,15 @@ function Junk($q, _DEV, CurrentUser, Resource) {
     sendLink: sendLink
 
   };
+
+  function signup(email, password) {
+    return Resource.post('qrate/agents', {
+      email: email,
+      password: password
+    }).then(function(response) {
+      $localStorage.qrateCurrentUser = response;
+    });
+  }
 
 
   function getAllTags() {

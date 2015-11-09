@@ -40,19 +40,19 @@ function CurrentUser(_DEV, Resource, $localStorage) {
   }
 
   function get() {
-    return $localStorage.currentUser || null;
+    return $localStorage.qrateCurrentUser || null;
   }
 
   function set(user) {
-    $localStorage.currentUser = user;
+    $localStorage.qrateCurrentUser = user;
   }
 
   function update(params) {
-    angular.extend($localStorage.currentUser, params);
+    angular.extend($localStorage.qrateCurrentUser, params);
   }
 
   function destroy() {
-    $localStorage.currentUser = null;
+    $localStorage.qrateCurrentUser = null;
   }
 
 }
