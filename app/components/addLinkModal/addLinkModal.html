@@ -1,12 +1,12 @@
 <div class="modal-header">
   <h3 class="modal-title">Add Links</h3>
 </div>
-<div class="modal-body">
-  <p class="modal-subtitle text-center">Bet your tokens and your reputation on new links!<br />
-    You'll get rewarded when the community agrees.</p>
-  <md-content>
-    <md-card class="new-link md-padding">
-      <form ng-submit="ctrl.submit()">
+<form ng-submit="ctrl.submit()">
+  <div class="modal-body">
+    <p class="modal-subtitle text-center">Bet your tokens and your reputation on new links!<br />
+      You'll get rewarded when the community agrees.</p>
+    <md-content>
+      <md-card class="new-link md-padding">
 
         <div class="new-link-url">
           <md-input-container flex class="md-block">
@@ -16,49 +16,49 @@
         </div>
 
         <div class="new-link-tag">
-          <md-chips
-                  ng-model="ctrl.newLinkTags"
-                  placeholder="Tag it"
-                  md-on-add="ctrl.addTag($chip)"
-                  md-require-match>
-            <md-autocomplete
-                    md-items="tag in ctrl.refreshTagsToSelectFrom(ctrl.searchText)"
-                    md-search-text="ctrl.searchText"
-                    md-item-text="tag.name"
-                    placeholder="Tags">
-              <span md-highlight-text="ctrl.searchText">{{tag.name}}</span>
-            </md-autocomplete>
-          </md-chips>
+           <!--  <md-chips
+                    ng-model="ctrl.newLinkTags"
+                    placeholder="Tag it"
+                    md-on-add="ctrl.addTag($chip)"
+                    md-require-match>
+              <md-autocomplete
+                      md-items="tag in ctrl.refreshTagsToSelectFrom(ctrl.searchText)"
+                      md-search-text="ctrl.searchText"
+                      md-item-text="tag.name"
+                      placeholder="Tags">
+                <span md-highlight-text="ctrl.searchText">{{tag.name}}</span>
+              </md-autocomplete>
+            </md-chips> -->
 
 
-          <!--<ui-select reset-search-input="true"
-                                 multiple
-                                 ng-model="ctrl.newLinkTags"
-                                 on-select="ctrl.addTag($select.selected)">
+          <ui-select reset-search-input="true"
+                                   multiple
+                                   ng-model="ctrl.newLinkTags"
+                                   on-select="ctrl.addTag($select.selected)">
 
-          <ui-select-match placeholder="Tag it">{{ $item.name }}</ui-select-match>
+            <ui-select-match placeholder="Tag it">{{ $item.name }}</ui-select-match>
 
-          <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom"
-                             refresh="ctrl.refreshTagsToSelectFrom($select.search)"
-                             refresh-delay="50">
+            <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom"
+                               refresh="ctrl.refreshTagsToSelectFrom($select.search)"
+                               refresh-delay="50">
 
-            <div class="select-contributor flex">
-              <div>{{ tag.name }}</div>
-            </div>
+              <div class="select-contributor flex">
+                <div>{{ tag.name }}</div>
+              </div>
 
-          </ui-select-choices>
-        </ui-select>-->
+            </ui-select-choices>
+          </ui-select>
 
         </div>
 
         <div class="new-link-rate">Rate it
           <star-rating ng-model="ctrl.newLinkEvaluation" required></star-rating>
         </div>
-      </form>
-    </md-card>
-  </md-content>
-</div>
-<div class="modal-footer">
-  <button ng-disabled="ctrl.isFormProcessing">Submit</button>
+      </md-card>
+    </md-content>
+  </div>
+  <div class="modal-footer">
+    <button ng-disabled="ctrl.isFormProcessing">Submit</button>
 
-</div>
+  </div>
+</form>
