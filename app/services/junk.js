@@ -1,7 +1,7 @@
 angular.module('qrate.services.junk', [])
   .service('Junk', Junk);
 
-function Junk($q, _DEV, CurrentUser, Resource) {
+function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
@@ -25,7 +25,7 @@ function Junk($q, _DEV, CurrentUser, Resource) {
       email: email,
       password: password
     }).then(function(response) {
-      $localStorage.qrateCurrentUser = response;
+      return $localStorage.qrateCurrentUser = response;
     });
   }
 
@@ -248,14 +248,20 @@ function Junk($q, _DEV, CurrentUser, Resource) {
     });
   }
 
-  function sendLink(data) {
-    var deferred = $q.defer();
+  function sendLink(url, evaluation, tags) {
+    tagNames = Helpers.mapNames(tags);
 
-    deferred.resolve(Math.random() > 0.5) // simulate random response if link exists or not
-
-    return deferred.promise;
+    return Resource.post('contributions', {
+      creator: CurrentUser.get().id,
+      type: "URLAndTags",
+      network: 1,
+      content: {
+        title: "Awesome title",
+        url: url,
+        evaluation: evaluation,
+        tags: tagNames
+      }
+    });
   }
-
-
 
 }

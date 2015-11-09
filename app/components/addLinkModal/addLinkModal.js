@@ -52,26 +52,23 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
 
   function submit() {
 
-    closeModal();
+    log('submit', ctrl.newLinkUrl, 'evalution', ctrl.newLinkEvaluation, 'tags', ctrl.newLinkTags);
+
+    // closeModal();
 
     ctrl.isFormProcessing = true;
 
-    var data = {
-      creator: null, // currentUser.id, // change after implementing CurrentUser // discussion about changing to creatorId
-      type: "qrate", 
-      collaboration: 9, // discussion about changing to collaborationId, + answer to wtf is this :)
-      content: 
-      {
-        url: ctrl.newLinkUrl,
-        evaluation: ctrl.newLinkEvaluation,
-        tags: ctrl.newLinkTags
+    Junk.sendLink(ctrl.newLinkUrl, ctrl.newLinkEvaluation, ctrl.newLinkTags).then(
+      function(response) {
+        ctrl.isFormProcessing = false;
+        log('CB: submit', response);
+        // openAddLinkResponseModal(response);
+      }, 
+      function(err) {
+        ctrl.isFormProcessing = false;
+        log('CB: submit: Error', err);
       }
-    };
-
-    Junk.sendLink().then(function(response) {
-      log(response);
-      openAddLinkResponseModal(response);
-    });
+    );
 
   }
 
