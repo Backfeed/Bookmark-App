@@ -5,7 +5,9 @@ function Helpers() {
 
   var service = {
     toId: toId,
-    mapIds: mapIds
+    toName: toName,
+    mapIds: mapIds,
+    mapNames: mapNames
   };
 
   return service;
@@ -14,8 +16,16 @@ function Helpers() {
     return x.id;
   }
 
+  function toName(x) {
+    return x.name;
+  }
+
   function mapIds(xs) {
     return _.map(xs, toId);
+  }
+
+  function mapNames(xs) {
+    return _.map(xs, toName);
   }
 
 }
