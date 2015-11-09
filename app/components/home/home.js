@@ -12,7 +12,7 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   angular.extend(ctrl, {
     search: search,
-    rateLink: rateLink,
+    evaluateLink: evaluateLink,
     endorseTag: endorseTag,
     DEendorseTag: DEendorseTag,
     setTagAsSearchQuery: setTagAsSearchQuery,
@@ -41,10 +41,12 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     });
   }
 
-  function rateLink(link) {
+  function evaluateLink(link) {
     $timeout(function() {
-      log("after timeout", link);
-      Junk.evaluateLink(link.id, link.currentUserEvaluation);
+      log("evaluateLink", "linkContributionId", link.contributionId, "evaluation", link.currentUserEvaluation);
+      Junk.evaluateLink(link.contributionId, link.currentUserEvaluation).then(function(response) {
+        log("CB: evaluateLink", response);
+      });
     }, 20);
   }
 

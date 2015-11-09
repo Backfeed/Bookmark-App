@@ -114,6 +114,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       links: [
         {
           title: "Link Title 1",
+          contributionId: 1,
           url: "http://duckduckgo.com",
           tags: [
             {
@@ -135,6 +136,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
         },
         {
           title: "Link Title 2",
+          contributionId: 2,
           url: "http://fifa.com",
           currentUserEvaluation: 3,
           tags: [
@@ -240,10 +242,10 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     });
   }
 
-  function evaluateLink(linkId, linkEvaluation) {
-    return Resource.post({
+  function evaluateLink(linkContributionId, linkEvaluation) {
+    return Resource.post('evaluations', {
       creator: CurrentUser.get().id,
-      contributionId: linkId,
+      contributionId: linkContributionId,
       evaluation: linkEvaluation
     });
   }
