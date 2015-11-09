@@ -21,13 +21,20 @@
       My Reputation: 200 <!-- {{ ctrl.currentUser.reputation }} -->
     </div>
   </div>
-  <div class="profile"
-       uib-popover="profilePopover.html"
+  <div class="profile pointer"
        popover-title="John Doe"
        popover-placement="bottom"
-       popover-trigger="mouseenter">
+       uib-popover-template="'avatarPopoverTemplate.html'">
     Avatar
   </div>
+
+  <script type="text/ng-template" id="avatarPopoverTemplate.html">
+    <div>some awesome <strong>html </strong> in here</div>
+    <div class="form-group">
+      <label>Popup Title:</label>
+      <input type="text" ng-model="dynamicPopover.title" class="form-control">
+    </div>
+  </script>
 
   <md-button class="md-accent md-fab add-link-button" aria-label="Add Links" ng-click="ctrl.openAddLinkModal()">
     <md-tooltip md-direction="down">
