@@ -25,18 +25,21 @@ function CurrentUser(_DEV, Resource, $localStorage) {
       return;
     }
 
-    Resource.get('api/me').then(function(user) {
-
-      log("init", user);
-
-      set(user);
-
-    });
+    Resource.get('api/me').then(
+      function(user) {
+        log("init", user);
+        set(user);
+      },
+      function(err) {
+        alert('Get current user error check console!');
+        log(err);
+      }
+    );
 
   }
 
   function isLogged() {
-    return !!localStorage['qrateToken'];
+    return !!$localStorage.qrateCurrentUser;
   }
 
   function get() {
@@ -53,6 +56,7 @@ function CurrentUser(_DEV, Resource, $localStorage) {
 
   function destroy() {
     $localStorage.qrateCurrentUser = null;
+    log('logout!', '$localStorage.qrateCurrentUser', $localStorage.qrateCurrentUser);
   }
 
 }

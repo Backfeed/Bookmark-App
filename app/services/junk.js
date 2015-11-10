@@ -8,6 +8,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   return {
 
     signup: signup,
+    signin: signin,
     getAllTags: getAllTags,
     getTagsByQuery: getTagsByQuery,
     endorseTag: endorseTag,
@@ -20,15 +21,34 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   };
 
-  function signup(email, password) {
-    return Resource.post('qrate/agents', {
-      email: email,
-      password: password
-    }).then(function(response) {
-      return $localStorage.qrateCurrentUser = response;
-    });
+  function signin(email, password) {
+    return Resource.get('qrate/agents/login?email=' + email + '&password=' + password)
+    .then(
+      function(currentUser) {
+        return CurrentUser.set(currentUser);
+      },
+      function(err) {
+        alert("signin error check console!");
+        log(err);
+      }
+    );
   }
 
+  function signup(email, password) {
+    return Resource.post('agents', {
+      email: email,
+      password: password
+    })
+    .then(
+      function(currentUser) {
+        return CurrentUser.set(currentUser);
+      },
+      function(err) {
+        alert('signup error check console!');
+        log(err);
+      }
+    );
+  }
 
   function getAllTags() {
 

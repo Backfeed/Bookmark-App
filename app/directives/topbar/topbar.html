@@ -4,13 +4,13 @@
     <small class="powered-by">By Backfeed and Ethereum</small>
   </div>
 
-  <div class="user-stats text-center">
+  <div class="user-stats text-center" ng-if="ctrl.currentUser">
     <div class="user-stat"
          uib-popover="Searching the Qrate library as well as submission of new URLs and Tags cost tokens. If your submissions will be appreciated by the community you will be rewarded with many more in return. If you only search the library without contributing tit, you’ll have to buy tokens from someone who is mostly contributing."
          popover-title="Tokens"
          popover-placement="bottom"
          popover-trigger="mouseenter">
-      My Tokens: 150 <!-- {{ ctrl.currentUser.tokens }} -->
+      My Tokens:  {{ ctrl.currentUser.tokens }}
     </div>
 
     <div class="user-stat"
@@ -18,7 +18,7 @@
          popover-title="Reputation"
          popover-placement="bottom"
          popover-trigger="mouseenter">
-      My Reputation: 200 <!-- {{ ctrl.currentUser.reputation }} -->
+      My Reputation:  {{ ctrl.currentUser.reputation }}
     </div>
   </div>
   <div class="profile pointer"

@@ -58,11 +58,7 @@ function topbarCtrl($auth, _DEV, $uibModal, CurrentUser, $scope) {
   }
 
   function logout() {
-
-    log('this should log me out!');
-
+    CurrentUser.destroy();
   }
-
-
 
 }

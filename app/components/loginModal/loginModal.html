@@ -1,5 +1,8 @@
-<form ng-submit="ctrl.submit()">
-  <input type="email" placeholder="email" ng-model="ctrl.email" required>
-  <input type="password" placeholder="password" ng-model="ctrl.password" required>
-  <button>Submit</button>
-</form>
+<div>
+  <form>
+    <input type="email" placeholder="email" ng-model="ctrl.email" required>
+    <input type="password" placeholder="password" ng-model="ctrl.password" required>
+    <button ng-click="ctrl.signin()" type="button">Signin</button>
+    <button ng-click="ctrl.signup()" type="button">Signup</button>
+  </form>
+</div>
