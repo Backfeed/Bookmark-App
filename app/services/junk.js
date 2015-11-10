@@ -35,7 +35,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   }
 
   function signup(email, password) {
-    return Resource.post('agents', {
+    return Resource.post('qrate/agents/signUp', {
       email: email,
       password: password
     })

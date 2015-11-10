@@ -4,13 +4,13 @@
     <small class="powered-by">By Backfeed and Ethereum</small>
   </div>
 
-  <div class="user-stats text-center" ng-if="ctrl.currentUser">
+  <div class="user-stats text-center" ng-if="$root.currentUser">
     <div class="user-stat"
          uib-popover="Searching the Qrate library as well as submission of new URLs and Tags cost tokens. If your submissions will be appreciated by the community you will be rewarded with many more in return. If you only search the library without contributing tit, you’ll have to buy tokens from someone who is mostly contributing."
          popover-title="Tokens"
          popover-placement="bottom"
          popover-trigger="mouseenter">
-      My Tokens:  {{ ctrl.currentUser.tokens }}
+      My Tokens:  {{ $root.currentUser.tokens }}
     </div>
 
     <div class="user-stat"
@@ -18,7 +18,7 @@
          popover-title="Reputation"
          popover-placement="bottom"
          popover-trigger="mouseenter">
-      My Reputation:  {{ ctrl.currentUser.reputation }}
+      My Reputation:  {{ $root.currentUser.reputation }}
     </div>
   </div>
   <div class="profile pointer"
@@ -42,11 +42,11 @@
     </md-tooltip>
     <md-icon md-svg-icon="plus" style="color: white;"></md-icon>
   </md-button>
-  <!-- {{ ctrl.currentUser.ehter }} -->
+  <!-- {{ $root.currentUser.ehter }} -->
 
 </md-toolbar>
 
 
 
-<button ng-click="ctrl.logout()" ng-if="ctrl.currentUser">Logout</button>
-<button ng-click="ctrl.login()" ng-if="!ctrl.currentUser">login</button>
+<button ng-click="ctrl.logout()" ng-if="$root.currentUser">Logout</button>
+<button ng-click="ctrl.login()" ng-if="!$root.currentUser">login</button>

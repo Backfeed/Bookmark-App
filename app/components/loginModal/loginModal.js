@@ -19,6 +19,7 @@ function LoginModal($uibModalInstance, _DEV, Junk) {
     log('signin', 'email', ctrl.email, 'password', ctrl.password);
     Junk.signin(ctrl.email, ctrl.password).then(function(currentUser) {
       log('CB: signin', currentUser);
+      closeModal();
     });
   }
 
@@ -26,6 +27,7 @@ function LoginModal($uibModalInstance, _DEV, Junk) {
     log('signup', 'email', ctrl.email, 'password', ctrl.password);
     Junk.signup(ctrl.email, ctrl.password).then(function(currentUser) {
       log('CB: signup', currentUser);
+      closeModal();
     });
   }
 

@@ -1,9 +1,11 @@
 angular.module('qrate.services.currentUser', [])
   .service('CurrentUser', CurrentUser);
 
-function CurrentUser(_DEV, Resource, $localStorage) {
+function CurrentUser($rootScope, _DEV, Resource, $localStorage) {
 
   var log = _DEV.log('CURRENT USER SERVICE');
+
+  init();
 
   var service = {
 
@@ -28,7 +30,7 @@ function CurrentUser(_DEV, Resource, $localStorage) {
     Resource.get('api/me').then(
       function(user) {
         log("init", user);
-        set(user);
+        return set(user);
       },
       function(err) {
         alert('Get current user error check console!');
@@ -46,15 +48,18 @@ function CurrentUser(_DEV, Resource, $localStorage) {
     return $localStorage.qrateCurrentUser || null;
   }
 
-  function set(user) {
-    $localStorage.qrateCurrentUser = user;
+  function set(currentUser) {
+    $rootScope.currentUser = currentUser;
+    return $localStorage.qrateCurrentUser = currentUser;
   }
 
   function update(params) {
-    angular.extend($localStorage.qrateCurrentUser, params);
+    angular.extend($rootScope.currentUser, params);
+    return angular.extend($localStorage.qrateCurrentUser, params);
   }
 
   function destroy() {
+    $rootScope.currentUser = null;
     $localStorage.qrateCurrentUser = null;
     log('logout!', '$localStorage.qrateCurrentUser', $localStorage.qrateCurrentUser);
   }
