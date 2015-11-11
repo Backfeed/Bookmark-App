@@ -54,7 +54,7 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
 
     log('submit', ctrl.newLinkUrl, 'evalution', ctrl.newLinkEvaluation, 'tags', ctrl.newLinkTags);
 
-    // closeModal();
+    closeModal();
 
     ctrl.isFormProcessing = true;
 
@@ -62,7 +62,7 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
       function(response) {
         ctrl.isFormProcessing = false;
         log('CB: submit', response);
-        // openAddLinkResponseModal(response);
+        openAddLinkResponseModal(response === 'link exists');
       }, 
       function(err) {
         ctrl.isFormProcessing = false;
