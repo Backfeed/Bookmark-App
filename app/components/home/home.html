@@ -7,11 +7,21 @@
             <form class="search-form" ng-submit="ctrl.search()">
                 <md-input-container class="md-block" layout>
                     <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" flex>
+
+                    
+
                     <md-button class="search-button md-icon-button md-primary" aria-label="Search Tags/Links">
                         <md-icon md-svg-icon="magnifying-glass"></md-icon>
                     </md-button>
                 </md-input-container>
             </form>
+        </div>
+        <div ng-if="ctrl.searchHasBeenMade && 
+                    !ctrl.tagsSearchResults.length &&
+                    !ctrl.linksSearchResults.length">
+            <p style="font-size: 20px;">No search results for you.
+              Come back, one year!</p>
+              <img src="http://doctorrach.com/wp-content/uploads/2013/10/Soup_Nazi_Button_2ap9ui2a_kvkwp1xa.jpg" alt="">
         </div>
 
         <section ng-if="ctrl.tagsSearchResults.length" class="tags-search-results" layout="row" layout-align="center center" layout-wrap>

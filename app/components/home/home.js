@@ -19,6 +19,7 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     refreshTagsToSelectFrom: refreshTagsToSelectFrom,
     addTagToLink: addTagToLink,
     searchQuery: undefined,
+    searchHasBeenMade: false, // temp until we move search results to hcild state
     tagsToSelectFrom: [],
     linksSearchResults: [],
     tagsSearchResults: []
@@ -36,6 +37,7 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     resetSearchResults();
     Junk.getLinksAndTagsByQuery(ctrl.searchQuery).then(function(response) {
       log("links and tags by query", ctrl.searchQuery, response);
+      ctrl.searchHasBeenMade = true;
       ctrl.linksSearchResults = response.links;
       ctrl.tagsSearchResults = response.tags;
     });
@@ -70,6 +72,7 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     log("links by tag", tagName);
     Junk.getLinksByTag(tagName).then(function(links) {
       log("CB: links by tag", links);
+      ctrl.searchHasBeenMade = true;
       ctrl.linksSearchResults = links;
     });
   }
@@ -102,6 +105,7 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
   }
 
   function resetSearchResults() {
+    ctrl.searchHasBeenMade = false;
     ctrl.linksSearchResults = [];
     ctrl.tagsSearchResults = [];
   }
