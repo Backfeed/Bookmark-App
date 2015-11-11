@@ -108,7 +108,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   }
 
   function getLinksAndTagsByQuery(query) {
-    Resource.get()
+    return Resource.get('search?query=' + query);
   }
 
   function getLinksByTag() {
