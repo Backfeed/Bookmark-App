@@ -5,6 +5,8 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
+  var allTags = [];
+
   return {
 
     signup: signup,
@@ -51,31 +53,9 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   }
 
   function getAllTags() {
-
-    var deferred = $q.defer();
-
-
-    deferred.resolve( 
-      [
-        {
-          name: 'fizz',
-          linksCount: 5
-        },
-  
-        {
-          name: 'buzz',
-          linksCount: 2
-        },
-  
-        {
-          name: 'pikachu',
-          linksCount: 999
-        }
-      ]
-    );
-
-    return deferred.promise;
-
+    return Resource.get('tags').then(function(tags) {
+      return allTags = tags;
+    });
   }
 
   function getTagsByQuery(query, tagsNamesToExclude) {
@@ -128,77 +108,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   }
 
   function getLinksAndTagsByQuery(query) {
-    var deferred = $q.defer();
-    
-    deferred.resolve({
-      links: [
-        {
-          title: "Link Title 1",
-          contributionId: 1,
-          url: "http://duckduckgo.com",
-          tags: [
-            {
-              name: 'foo',
-              endorsmentCount: 5,
-              contributionId: 100
-            },
-            {
-              name: 'bar',
-              endorsmentCount: 2,
-              contributionId: 101
-            },
-            {
-              name: 'fizz',
-              endorsmentCount: 13,
-              contributionId: 102
-            }
-          ]
-        },
-        {
-          title: "Link Title 2",
-          contributionId: 2,
-          url: "http://fifa.com",
-          currentUserEvaluation: 3,
-          tags: [
-            {
-              name: 'sport',
-              endorsmentCount: 2,
-              contributionId: 103
-            },
-            {
-              name: 'corruption',
-              endorsmentCount: 6,
-              contributionId: 104
-            },
-            {
-              name: 'waste-of-time',
-              endorsmentCount: 99,
-              contributionId: 105
-            }
-          ]
-        }
-      ],
-
-      tags: [
-        {
-          name: 'fizz',
-          linksCount: 5
-        },
-  
-        {
-          name: 'buzz',
-          linksCount: 2
-        },
-  
-        {
-          name: 'pikachu',
-          linksCount: 999
-        }
-      ]
-
-    });
-
-    return deferred.promise;
+    Resource.get()
   }
 
   function getLinksByTag() {
@@ -283,6 +193,16 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
         evaluation: evaluation,
         tags: tagNames
       }
+    }).then(function(response) {
+      if (response.contributorBalance && 
+          response.contributorBalance[0] &&
+          response.contributorBalance[0].newTokenBalance) {
+        CurrentUser.update({
+          tokens: response.contributorBalance[0].newTokenBalance
+        });
+      }
+
+      return response;
     });
   }
 
