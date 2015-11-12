@@ -34,19 +34,14 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
     if (! query)
       return;
 
-    log("refreshTagsToSelectFrom by query:", query);
+    var tags = Junk.getTagsByQuery(query);
+    log("tags for autocomplete", tags);
 
-    var selectedTagsNamesToExclude = Helpers.mapIds(ctrl.newLinkTags);
-
-    Junk.getTagsByQuery(query, selectedTagsNamesToExclude).then(function(tags) {
-      log("tags for autocomplete", tags);
-
-      if (tags.length) {
-        ctrl.tagsToSelectFrom = tags;
-      } else {
-        ctrl.tagsToSelectFrom = [{ name: query }]; // give user the option to add a tag that haven't been used yet
-      }
-    });
+    if (tags.length) {
+      ctrl.tagsToSelectFrom = tags;
+    } else {
+      ctrl.tagsToSelectFrom = [{ name: query }]; // give user the option to add a tag that haven't been used yet
+    }
 
   }
 

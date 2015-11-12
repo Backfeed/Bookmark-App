@@ -5,7 +5,7 @@ function CurrentUser($rootScope, _DEV, Resource, $localStorage) {
 
   var log = _DEV.log('CURRENT USER SERVICE');
 
-  init();
+  // init();
 
   var service = {
 

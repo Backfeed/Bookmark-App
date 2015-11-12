@@ -35,35 +35,37 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   function search() {
     resetSearchResults();
-    Junk.getLinksAndTagsByQuery(ctrl.searchQuery).then(function(response) {
-      log("links and tags by query", ctrl.searchQuery, response);
-      ctrl.searchHasBeenMade = true;
-      ctrl.linksSearchResults = response.links;
-      ctrl.tagsSearchResults = response.tags;
-    });
+    var response = Junk.getLinksAndTagsByQuery(ctrl.searchQuery);
+    log("links and tags by query", ctrl.searchQuery, response);
+    ctrl.searchHasBeenMade = true;
+    ctrl.linksSearchResults = response.links;
+    ctrl.tagsSearchResults = response.tags;
   }
 
   function evaluateLink(link) {
-    $timeout(function() {
-      log("evaluateLink", "linkContributionId", link.contributionId, "evaluation", link.currentUserEvaluation);
-      Junk.evaluateLink(link.contributionId, link.currentUserEvaluation).then(function(response) {
-        log("CB: evaluateLink", response);
-      });
-    }, 20);
+    // $timeout(function() {
+    //   log("evaluateLink", "linkContributionId", link.contributionId, "evaluation", link.currentUserEvaluation);
+    //   Junk.evaluateLink(link.contributionId, link.currentUserEvaluation).then(function(response) {
+    //     log("CB: evaluateLink", response);
+    //   });
+    // }, 20);
   }
 
-  function endorseTag(linkId, tagId) {
-    log("endorse tag", tagId, "of linkId", linkId)
-    Junk.endorseTag(linkId, tagId).then(function(response) {
-      log("CB: endorse tag", response);
-    });
+  function endorseTag(linkId, tag) {
+    if (tag.currentUserEndorsment)
+      return;
+
+    log("endorse tag", tag, "of linkId", linkId);
+    tag.currentUserEndorsment = 1;
+    tag.endorsmentCount++;
   }
 
-  function DEendorseTag(linkId, tagId) {
-    log("DEendorse tag", tagId, "of linkId", linkId)
-    Junk.endorseTag(linkId, tagId).then(function(response) {
-      log("CB: DEendorse tag", response);
-    });
+  function DEendorseTag(linkId, tag) {
+    if (tag.currentUserEndorsment)
+      return;
+    log("DEendorse tag", tag, "of linkId", linkId)
+    tag.currentUserEndorsment = 1;
+    tag.endorsmentCount--;
   }
 
   function setTagAsSearchQuery(tagName) {
@@ -85,22 +87,23 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
     log("refreshTagsToSelectFrom by query:", query, "excluding tags", selectedTagsNamesToExclude);
 
-    Junk.getTagsByQuery(query, selectedTagsNamesToExclude).then(function(tags) {
-      log("tags for autocomplete", tags);
+    var tags = Junk.getTagsByQuery(query, selectedTagsNamesToExclude);
+    log("tags for autocomplete", tags);
 
-      if (tags.length) {
-        ctrl.tagsToSelectFrom = tags;
-      } else {
-        ctrl.tagsToSelectFrom = [{ name: query }]; // give user the option to add a tag that haven't been used yet
-      }
-    });
+    if (tags.length) {
+      ctrl.tagsToSelectFrom = tags;
+    } else {
+      ctrl.tagsToSelectFrom = [{ name: query }]; // give user the option to add a tag that haven't been used yet
+    }
 
   }
 
-  function addTagToLink(tagName, linkId) {
-    log('add tag', tagName, 'to link with id', linkId);
-    Junk.addTagTolink(tagName, linkId).then(function(response) {
-      log('CB: add tag to link', response);
+  function addTagToLink(tag, link) {
+    log('add tag', tag, 'to link', link);
+    link.tags.push({
+      name: tag.name,
+      endorsmentCount: 1,
+      currentUserEndorsment: 1
     });
   }
 

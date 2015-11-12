@@ -5,7 +5,32 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
-  var allTags = [];
+  var allLinks = [
+    {
+      title: "Governemnt terminator",
+      contributionId: 1,
+      currentUserEvaluation: false,
+      url: "www.ethereum.com",
+      tags: [
+        {
+          name: "Cold anarchy!",
+          endorsmentCount: 9,
+          currentUserEndorsment: 1
+        },
+        {
+          name: "Microsoft surprise???",
+          endorsmentCount: -217
+        }
+      ]
+    }
+  ];
+
+  var allTags = [
+    {
+      name: "Cold anarchy!",
+      linkCount: 1
+    }
+  ];
 
   return {
 
@@ -59,7 +84,12 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   }
 
   function getTagsByQuery(query, tagsNamesToExclude) {
-    return Resource.get('tags?query=' + query);
+
+    if (query === 'foo') {
+      return [];
+    }
+
+    return allTags;
   }
 
   function endorseTag(linkId, tagId) {
@@ -81,7 +111,10 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   }
 
   function getLinksAndTagsByQuery(query) {
-    return Resource.get('search?query=' + query);
+    return {
+      links: allLinks,
+      tags: allTags
+    }
   }
 
   function getLinksByTag() {
