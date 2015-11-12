@@ -1,35 +1,106 @@
 angular.module('qrate.services.junk', [])
   .service('Junk', Junk);
 
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt() {
+    return Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+}
+
 function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
   var allLinks = [
     {
-      title: "Governemnt terminator",
+      title: "Nostredamus 3.0",
       contributionId: 1,
-      currentUserEvaluation: false,
-      url: "www.ethereum.com",
+      url: "augur.net",
       tags: [
         {
-          name: "Cold anarchy!",
+          name: "Jack not the reaper",
           endorsmentCount: 9,
           currentUserEndorsment: 1
         },
         {
-          name: "Microsoft surprise???",
-          endorsmentCount: -217
+          name: "Joey not Triviani",
+          endorsmentCount: getRandomInt()
+        },
+        {
+          name: "Tony Sakich Sopranos",
+          endorsmentCount: getRandomInt()
+        },
+        {
+          name: "Peronet the spagheti",
+          endorsmentCount: getRandomInt()
+        },
+        {
+          name: "Ryan automatic judgement",
+          endorsmentCount: getRandomInt()
+        }
+      ]
+    },
+
+    {
+      title: "Gimmie your margin I'll give u mine",
+      contributionId: 3,
+      url: "makerdao.com",
+      tags: [
+        {
+          name: "Annonymous dude 1",
+          endorsmentCount: 2,
+          currentUserEndorsment: 1
+        },
+        {
+          name: "Annonymous dude 2",
+          endorsmentCount: 5
+        }
+      ]
+    },
+
+    {
+      title: "Crowdsourced Nostredamus",
+      contributionId: 3,
+      url: "groupgnosis.com",
+      tags: [
+        {
+          name: "foo",
+          endorsmentCount: 2,
+          currentUserEndorsment: 1
+        },
+        {
+          name: "bar",
+          endorsmentCount: 5
         }
       ]
     }
+
   ];
 
   var allTags = [
     {
       name: "Cold anarchy!",
       linkCount: 1
+    },
+    {
+      name: "V for vitalik",
+      linkCount: 9
+    },
+    {
+      name: "relax nothing is under control",
+      linkCount: 5
+    },
+    {
+      name: "Gavin wood do it",
+      linkCount: 2
+    },
+    {
+      name: "Vlad the friendly ghost",
+      linkCount: 8
     }
+
   ];
 
   return {
@@ -122,44 +193,39 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
     deferred.resolve([
       {
-        title: 'IMFF',
-        url: "moo.com",
+        title: 'Whatever you do, join them',
+        url: "colony.io",
         tags: [
           {
-            name: 'choko',
+            name: 'Captain Jack',
             endorsmentCount: 2,
             contributionId: 1000
           },
           {
-            name: 'barbratheking',
+            name: 'Proof of Cognition',
             endorsmentCount: 4,
             contributionId: 1001
-          },
-          {
-            name: 'fizzbuzz',
-            endorsmentCount: 13,
-            contributionId: 1002
           }
         ]
       },
       {
-        title: 'MOOOO',
-        url: "imf.com",
-        currentUserEvaluation: 1,
+        title: 'Who needs keys anywayz?',
+        url: "slock.it",
+        currentUserEvaluation: 5,
         tags: [
           {
-            name: 'belongs to the past',
-            endorsmentCount: 999,
+            name: 'Christoph for the win',
+            endorsmentCount: 8,
             contributionId: 1003
           },
           {
-            name: 'corruption',
-            endorsmentCount: 999,
+            name: 'Simon the architect',
+            endorsmentCount: 12,
             contributionId: 1004
           },
           {
-            name: 'destroy ASAP',
-            endorsmentCount: 9999999,
+            name: 'Stephan the thinker',
+            endorsmentCount: 6,
             contributionId: 1005
           }
         ]
