@@ -17,7 +17,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     DEendorseTag: DEendorseTag,
     getLinksAndTagsByQuery: getLinksAndTagsByQuery,
     getLinksByTag: getLinksByTag, 
-    addTagTolink: addTagTolink,
+    addTagToLink: addTagToLink,
     evaluateLink: evaluateLink,
     sendLink: sendLink
 
@@ -134,12 +134,25 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     return deferred.promise;
   }
 
-  function addTagTolink(tagName, linkId) {
+  function addTagToLink(tagName, linkUrl) {
     return Resource.post('contributions', {
       creator: CurrentUser.get().id,
-      type: "qrate",
-      collaboration: linkId,
-      content: { tag: "tagName" }
+      type: "tags",
+      network: 1,
+      content: { 
+        url: linkUrl,
+        tags: [tagName]
+      }
+    }).then(function(response) {
+      if (response.contributorBalance && 
+          response.contributorBalance[0] &&
+          response.contributorBalance[0].newTokenBalance) {
+        CurrentUser.update({
+          tokens: response.contributorBalance[0].newTokenBalance
+        });
+      }
+
+      return response;
     });
   }
 

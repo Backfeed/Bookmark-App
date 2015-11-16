@@ -97,10 +97,11 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   }
 
-  function addTagToLink(tagName, linkId) {
-    log('add tag', tagName, 'to link with id', linkId);
-    Junk.addTagTolink(tagName, linkId).then(function(response) {
+  function addTagToLink(tagName, link) {
+    log('add tag', tagName, 'to link with url', link.url);
+    Junk.addTagToLink(tagName, link.url).then(function(response) {
       log('CB: add tag to link', response);
+      link.tags.push(response.tag);
     });
   }
 
