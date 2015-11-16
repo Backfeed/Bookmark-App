@@ -159,7 +159,6 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       type: "URLAndTags",
       network: 1,
       content: {
-        title: "Awesome title",
         url: url,
         evaluation: evaluation,
         tags: tagNames
