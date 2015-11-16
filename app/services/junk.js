@@ -62,20 +62,18 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     return Resource.get('tags?query=' + query);
   }
 
-  function endorseTag(linkId, tagId) {
-    return Resource.post("evaluations?fields=senderTokenReputationChange,contributionNewValue", {
+  function endorseTag(tagId) {
+    return Resource.post("evaluations", {
       creator: CurrentUser.get().id,
-      tagId: tagId,
-      linkId: linkId,
+      contributionId: tagId,
       evaluation: 0
     });
   }
 
-  function DEendorseTag(linkId, tagId) {
+  function DEendorseTag(tagId) {
     return Resource.post("evaluations?fields=senderTokenReputationChange,contributionNewValue", {
       creator: CurrentUser.get().id,
-      tagId: tagId,
-      linkId: linkId,
+      contributionId: tagId,
       evaluation: -1
     });
   }

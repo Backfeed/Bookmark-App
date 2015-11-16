@@ -52,16 +52,16 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     }, 20);
   }
 
-  function endorseTag(linkId, tagId) {
+  function endorseTag(tagId) {
     log("endorse tag", tagId, "of linkId", linkId)
-    Junk.endorseTag(linkId, tagId).then(function(response) {
+    Junk.endorseTag(tagId).then(function(response) {
       log("CB: endorse tag", response);
     });
   }
 
-  function DEendorseTag(linkId, tagId) {
+  function DEendorseTag(tagId) {
     log("DEendorse tag", tagId, "of linkId", linkId)
-    Junk.endorseTag(linkId, tagId).then(function(response) {
+    Junk.endorseTag(tagId).then(function(response) {
       log("CB: DEendorse tag", response);
     });
   }
