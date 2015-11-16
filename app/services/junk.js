@@ -67,14 +67,32 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       creator: CurrentUser.get().id,
       contributionId: tagId,
       evaluation: 0
+    }).then(function(response) {
+      if (response.senderTokenReputationChange && 
+          response.senderTokenReputationChange.agentNewReputationBalance) {
+        CurrentUser.update({
+          tokens: response.senderTokenReputationChange.agentNewReputationBalance
+        });
+      }
+
+      return response;
     });
   }
 
   function DEendorseTag(tagId) {
-    return Resource.post("evaluations?fields=senderTokenReputationChange,contributionNewValue", {
+    return Resource.post("evaluations", {
       creator: CurrentUser.get().id,
       contributionId: tagId,
       evaluation: -1
+    }).then(function(response) {
+      if (response.senderTokenReputationChange && 
+          response.senderTokenReputationChange.agentNewReputationBalance) {
+        CurrentUser.update({
+          tokens: response.senderTokenReputationChange.agentNewReputationBalance
+        });
+      }
+
+      return response;
     });
   }
 

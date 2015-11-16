@@ -52,17 +52,21 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     }, 20);
   }
 
-  function endorseTag(tagId) {
-    log("endorse tag", tagId, "of linkId", linkId)
-    Junk.endorseTag(tagId).then(function(response) {
+  function endorseTag(tag) {
+    log("endorse tag", tag.contributionId)
+    Junk.endorseTag(tag.contributionId).then(function(response) {
       log("CB: endorse tag", response);
+      tag.currentUserEvaluation = 0;
+      tag.endorsmentCount++;
     });
   }
 
-  function DEendorseTag(tagId) {
-    log("DEendorse tag", tagId, "of linkId", linkId)
-    Junk.endorseTag(tagId).then(function(response) {
+  function DEendorseTag(tag) {
+    log("DEendorse tag", tag.contributionId)
+    Junk.DEendorseTag(tag.contributionId).then(function(response) {
       log("CB: DEendorse tag", response);
+      tag.currentUserEvaluation = -1;
+      tag.endorsmentCount--;
     });
   }
 
