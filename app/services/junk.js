@@ -155,7 +155,7 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
   function addTagToLink(tagName, linkUrl) {
     return Resource.post('contributions', {
       creator: CurrentUser.get().id,
-      type: "tags",
+      type: "Tags",
       network: 1,
       content: { 
         url: linkUrl,
