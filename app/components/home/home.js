@@ -105,7 +105,7 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
     log('add tag', tagName, 'to link with url', link.url);
     Junk.addTagToLink(tagName, link.url).then(function(response) {
       log('CB: add tag to link', response);
-      link.tags.push(response.tag);
+      link.tags.push(response.tags[0]);
     });
   }
 
