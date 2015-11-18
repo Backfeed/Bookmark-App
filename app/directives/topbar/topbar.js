@@ -1,4 +1,4 @@
-angular.module('qrate.directives.topbar', [])
+angular.module('qrate.directives.topbar', ['ui.gravatar'])
   .directive('topbar', topbar);
 
 function topbar() {

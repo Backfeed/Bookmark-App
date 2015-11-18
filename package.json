@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Backfeed/Bookmark-App.git"
+    "url": "https://github.com/Backfeed/Qrate.git"
   },
   "author": "Backfeed <info@backfeed.cc> (http://backfeed.cc/)",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/Backfeed/Bookmark-App/issues"
+    "url": "https://github.com/Backfeed/Qrate/issues"
   },
-  "homepage": "https://github.com/Backfeed/Bookmark-App#readme",
+  "homepage": "https://github.com/Backfeed/Qrate#readme",
   "devDependencies": {
     "babel": "^6.0.15",
     "browser-sync": "^2.9.11",

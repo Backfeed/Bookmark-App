@@ -1,4 +1,5 @@
-<!-- <sidebar flex="initial" style="width: 250px;" class="hide-sm"></sidebar> -->
+<sidebar flex="initial" style="width: 250px;" class="hide-sm"></sidebar>
+
 <section class="main-section" flex="auto">
   <div class="main-section-inner">
     <div class="text-center">
@@ -15,7 +16,7 @@
         </md-input-container>
       </form>
     </div>
-    <div ng-if="ctrl.searchHasBeenMade && 
+    <div ng-if="ctrl.searchHasBeenMade &&
                     !ctrl.tagsSearchResults.length &&
                     !ctrl.linksSearchResults.length">
       <p style="font-size: 20px;">No search results for you. Come back, one year!</p>
@@ -43,15 +44,15 @@
               <li ng-repeat="tag in link.tags">
                 <div class="tag-buttons-container">
                   <div class="tag-buttons">
-                    <md-button aria-label="Endorse Tag" 
-                               class="md-fab md-raised md-mini" 
+                    <md-button aria-label="Endorse Tag"
+                               class="md-fab md-raised md-mini"
                                ng-class="{ 'disabled': tag.currentUserEvaluation !== undefined }"
-                               ng-click="ctrl.endorseTag(tag)" 
+                               ng-click="ctrl.endorseTag(tag)"
                                ng-disabled="tag.currentUserEvaluation !== undefined">
                       <md-icon md-svg-icon="thumbs-up"></md-icon>
                     </md-button>
-                    <md-button aria-label="Disapprove Tag" 
-                               class="md-fab md-raised md-mini" 
+                    <md-button aria-label="Disapprove Tag"
+                               class="md-fab md-raised md-mini"
                                ng-class="{ 'disabled': tag.currentUserEvaluation !== undefined }"
                                ng-click="ctrl.DEendorseTag(tag)"
                                ng-disabled="tag.currentUserEvaluation !== undefined">
