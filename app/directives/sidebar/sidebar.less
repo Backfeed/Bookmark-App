@@ -1,4 +1,23 @@
+.tags-list-container {
+  position: relative;
+  height: calc(~"100vh - 100px");
+  overflow-y: overlay;
+  border-right: 1px solid #ddd;
+  padding-right: 10px;
+}
+
+.sort-tags-list {
+  margin-left: auto;
+  margin-right: auto;
+
+  &:not(.md-input-has-value) {
+    width: 90px;
+  }
+}
+
 .tags-list {
+  color: #8c8c8c;
+
   md-list-item {
     border-bottom: 1px #eaeaea solid;
 
@@ -11,8 +30,8 @@
     }
   }
 }
+
 .tags-list-titles {
   font-weight: bold;
-  color: #8c8c8c;
   font-size: 14px;
 }

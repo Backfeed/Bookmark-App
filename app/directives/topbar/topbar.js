@@ -15,7 +15,7 @@ function topbar() {
 
 }
 
-function topbarCtrl($auth, _DEV, $uibModal, CurrentUser, $scope) {
+function topbarCtrl(_DEV, $uibModal, CurrentUser, $scope) {
 
   log = _DEV.log('TOPBAR DIRECTIVE');
 

@@ -1,8 +1,8 @@
 {
-  "name": "bf-bookmark-app",
+  "name": "backfeed-qrate",
   "description": "Resource Library for Decentralization",
   "version": "0.0.0",
-  "homepage": "https://github.com/Backfeed/Bookmark-App",
+  "homepage": "https://github.com/Backfeed/Qrate",
   "license": "MIT",
   "private": true,
   "dependencies": {

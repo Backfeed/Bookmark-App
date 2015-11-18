@@ -1,6 +1,6 @@
 <aside>
-  <md-content layout-padding class="tags-list-container">
-    <md-input-container>
+  <md-content layout-margin class="tags-list-container">
+    <md-input-container class="sort-tags-list">
       <label>Sort by</label>
       <md-select ng-model="ctrl.userState">
         <md-option value="links-count">number of links</md-option>
@@ -15,7 +15,7 @@
         <span>Links</span>
       </md-list-item>
       <md-list-item ng-repeat="tag in ctrl.tags" 
-                    layout 
+                    layout
                     layout-align="space-between" 
                     ng-click="ctrl.setTagAsSearchQuery(tag.name)"
                     class="pointer">

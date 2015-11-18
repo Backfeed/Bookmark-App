@@ -1,7 +1,7 @@
 <md-toolbar class="md-primary" layout="row" layout-align="space-between center">
-  <div layout="column">
+  <div layout="column" layout-align="start center">
     <img src="/assets/images/header-logo.png" alt="Logo">
-    <small class="powered-by">By Backfeed and Ethereum</small>
+    <small class="powered-by">By <a href="http://backfeed.cc/" target="_blank">Backfeed</a> and <a href="http://ethereum.org/" target="_blank">Ethereum</a></small>
   </div>
 
   <div class="user-stats text-center" ng-if="$root.currentUser">
@@ -10,27 +10,51 @@
          popover-title="Tokens"
          popover-placement="bottom"
          popover-trigger="mouseenter">
-      My Tokens:  {{ $root.currentUser.tokens }}
+      Tokens:  {{ $root.currentUser.tokens }}
     </div>
 
     <div class="user-stat"
          uib-popover="You put a fraction of reputation on stake every time you evaluate a URL or endorse a tag. If your evaluation or endorsement is indicative of future evaluations, your reputation will rise in the community. When determining the relevance of a tag to a URL our system weights the endorsements according to the evaluators reputation. The more reputation you have, the more your opinion counts and the more you are able to shape the structure of the curated library."
          popover-title="Reputation"
          popover-placement="bottom"
-         popover-trigger="mouseenter">
-      My Reputation:  {{ $root.currentUser.reputation }}
+       popover-trigger="mouseenter">
+      Reputation:  {{ $root.currentUser.reputation }}
     </div>
   </div>
-  <div class="profile pointer" ng-if="$root.currentUser"
-       uib-popover-template="'avatarPopoverTemplate.html'"
-       popover-placement="bottom"
-       tooltip-trigger="mouseenter">
-    <img gravatar-src="$root.currentUser.email" gravatar-size="48" gravatar-default="identicon">
+  <div class="profile" ng-if="$root.currentUser">
+    <img class="img-circle pointer"
+         gravatar-src="$root.currentUser.email" gravatar-size="48" gravatar-default="identicon"
+         uib-popover-template="'avatarPopoverTemplate.html'"
+         popover-placement="bottom"
+         tooltip-trigger="click">
   </div>
 
   <script type="text/ng-template" id="avatarPopoverTemplate.html">
-    <div>some awesome <strong>html </strong> in here</div>
-    <button ng-click="ctrl.logout()" ng-if="$root.currentUser">Logout</button>
+    <div class="popover-stats">
+      <div class="popover-stat" layout layout-padding layout-align="space-between center">
+        <div class="popover-stat-title">Ether Left</div>
+        <div class="popover-stat-value">405</div>
+      </div>
+      <div class="popover-stat" layout layout-padding layout-align="space-between center">
+        <div class="popover-stat-title">Links Added</div>
+        <div class="popover-stat-value">405</div>
+      </div>
+      <div class="popover-stat" layout layout-padding layout-align="space-between center">
+        <div class="popover-stat-title">Tags Suggested</div>
+        <div class="popover-stat-value">405</div>
+      </div>
+      <div class="popover-stat" layout layout-padding layout-align="space-between center">
+        <div class="popover-stat-title">Tags Endorsed</div>
+        <div class="popover-stat-value">405</div>
+      </div>
+      <div class="popover-stat" layout layout-padding layout-align="space-between center">
+        <div class="popover-stat-title">Links Evaluated</div>
+        <div class="popover-stat-value">405</div>
+      </div>
+    </div>
+    <div class="popover-footer">
+      <md-button ng-click="ctrl.logout()" class="md-primary">Sign Out</md-button>
+    </div>
   </script>
 
   <button ng-click="ctrl.login()" ng-if="!$root.currentUser">login</button>

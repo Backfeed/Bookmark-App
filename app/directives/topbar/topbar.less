@@ -4,15 +4,45 @@ topbar {
   }
 }
 
+.profile .popover-content {
+  padding: 0;
+
+  .popover-footer>.md-button {
+    color: #3d7be2 !important;
+    font-weight: 900;
+    padding: 0 14px;
+  }
+}
+
+.popover-stats {
+  color: #3d7be2;
+  padding: 9px 14px;
+  border-bottom: 1px solid #3d7be2;
+}
+
+.popover-stat-value {
+  font-weight: bold;
+  padding-left: 1rem;
+}
+
 .powered-by {
   font-size: 11px;
   color: #b8cff5;
   margin-top: 5px;
+
+  a {
+    color: #b8cff5 !important;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .user-stats {
   font-size: 16px;
-  color: #e5e5e5;
+  color: #b6d0fb;
+  text-shadow: 0px 1px 1px #1145e9;
   display: flex;
 
   .popover {
@@ -28,5 +58,5 @@ topbar {
 .add-link-button {
   position: absolute;
   right: 280px;
-  top: 47px;
+  top: 50px;
 }
