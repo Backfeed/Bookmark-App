@@ -19,7 +19,6 @@
   md-card {
     padding: 0 9px 8px 10px;
     border: #dfdfdf 1px solid;
-    box-shadow: none;
   }
 
 
@@ -137,13 +136,11 @@
 }
 
 .link-title {
-  height: 48px;
-  line-height: 52px;
   font-size: 22px;
   font-weight: bold;
   color: @color-primary;
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .link-meta {
@@ -154,6 +151,8 @@
 .link-url {
   font-size: 13px;
   color: @color-link;
+  width: calc(100% - 130px);
+  word-wrap: break-word;
 }
 
 

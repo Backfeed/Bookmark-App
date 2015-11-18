@@ -4,7 +4,8 @@
   display: inline-block;
   
   .star {
-    padding: 1px;
+    padding-right: 1px;
+    padding-left: 1px;
     color: #ddd;
     font-size: 20px;
     text-shadow: .05em .05em #aaa;
@@ -12,12 +13,16 @@
     display: inline-block;
     cursor: pointer;
 
+    &:focus {
+      outline: 0;
+    }
+
     &.filled {
       color: #fd0;
     }
-  }
 
-  &.readonly .star.filled {
-    color: #666;
+    &>md-icon {
+      color: #4285f4;
+    }
   }
 }

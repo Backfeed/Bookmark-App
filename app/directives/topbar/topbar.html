@@ -1,4 +1,4 @@
-<md-toolbar class="md-primary" layout="row" layout-align="space-between center">
+<md-toolbar class="md-primary" layout layout-sm="column" layout-align="space-between center" layout-align-sm="center center">
   <div layout="column" layout-align="start center">
     <img src="/assets/images/header-logo.png" alt="Logo">
     <small class="powered-by">By <a href="http://backfeed.cc/" target="_blank">Backfeed</a> and <a href="http://ethereum.org/" target="_blank">Ethereum</a></small>
@@ -57,7 +57,7 @@
     </div>
   </script>
 
-  <button ng-click="ctrl.login()" ng-if="!$root.currentUser">login</button>
+  <md-button class="md-raised" ng-click="ctrl.login()" ng-if="!$root.currentUser">Login</md-button>
 
   <md-button class="md-accent md-fab add-link-button" aria-label="Add Links" ng-click="ctrl.openAddLinkModal()">
     <md-tooltip md-direction="down">
