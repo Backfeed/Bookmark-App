@@ -100,56 +100,8 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     return Resource.get('search?query=' + query);
   }
 
-  function getLinksByTag() {
-    var deferred = $q.defer();
-
-    deferred.resolve([
-      {
-        title: 'IMFF',
-        url: "moo.com",
-        tags: [
-          {
-            name: 'choko',
-            endorsmentCount: 2,
-            contributionId: 1000
-          },
-          {
-            name: 'barbratheking',
-            endorsmentCount: 4,
-            contributionId: 1001
-          },
-          {
-            name: 'fizzbuzz',
-            endorsmentCount: 13,
-            contributionId: 1002
-          }
-        ]
-      },
-      {
-        title: 'MOOOO',
-        url: "imf.com",
-        currentUserEvaluation: 1,
-        tags: [
-          {
-            name: 'belongs to the past',
-            endorsmentCount: 999,
-            contributionId: 1003
-          },
-          {
-            name: 'corruption',
-            endorsmentCount: 999,
-            contributionId: 1004
-          },
-          {
-            name: 'destroy ASAP',
-            endorsmentCount: 9999999,
-            contributionId: 1005
-          }
-        ]
-      }
-    ]);
-    
-    return deferred.promise;
+  function getLinksByTag(tagName) {
+    return Resource.get('getLinksByTag?tag=' + tagName);
   }
 
   function addTagToLink(tagName, linkUrl) {
