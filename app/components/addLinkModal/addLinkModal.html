@@ -15,7 +15,7 @@
           </md-input-container>
         </div>
 
-        <div class="new-link-tag">
+        <div class="new-link-tag" id="temp-fix-ui-select">
            <!--  <md-chips
                     ng-model="ctrl.newLinkTags"
                     placeholder="Tag it"
@@ -34,7 +34,7 @@
           <ui-select reset-search-input="true"
                                    multiple
                                    ng-model="ctrl.newLinkTags"
-                                   on-select="ctrl.addTag($select.selected)">
+                                   on-select="ctrl.addTag($select)">
 
             <ui-select-match placeholder="Tag it">{{ $item.name }}</ui-select-match>
 

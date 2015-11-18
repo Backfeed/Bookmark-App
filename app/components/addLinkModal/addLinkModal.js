@@ -14,8 +14,9 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
   angular.extend(ctrl, {
     closeModal: closeModal,
     refreshTagsToSelectFrom: refreshTagsToSelectFrom,
-    searchText: null,
     submit: submit,
+    addTag: addTag,
+    searchText: null,
     tagsToSelectFrom: [],
     isFormProcessing: false
   });
@@ -28,6 +29,11 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
 
   function closeModal() {
     $uibModalInstance.dismiss("closed by user");
+  }
+
+  // Temp fix to ui select directive
+  function addTag($select) {
+    angular.element(document.querySelector('#temp-fix-ui-select .ui-select-search'))[0].placeholder = 'add tag';
   }
 
   function refreshTagsToSelectFrom(query) {

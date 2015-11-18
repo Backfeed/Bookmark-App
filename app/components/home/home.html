@@ -73,8 +73,8 @@
               </li>
 
               <li class="new-link-tag">
-                <form ng-submit="ctrl.addTagToLink($select.selected.name, link)">
-                  <ui-select reset-search-input="true" ng-model="newTag" on-select="ctrl.addTagToLink($select.selected.name, link)">
+                <form ng-submit="ctrl.addTagToLink($select, link)">
+                  <ui-select reset-search-input="true" ng-model="newTag" on-select="ctrl.addTagToLink($select, link)">
 
                     <ui-select-match placeholder="Tag it">{{ $item.name }}</ui-select-match>
 

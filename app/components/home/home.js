@@ -101,11 +101,14 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   }
 
-  function addTagToLink(tagName, link) {
+  function addTagToLink($select, link) {
+    var tagName = $select.selected.name;
     log('add tag', tagName, 'to link with url', link.url);
     Junk.addTagToLink(tagName, link.url).then(function(response) {
       log('CB: add tag to link', response);
       link.tags.push(response.tags[0]);
+      $select.selected = '';
+      $select.items = [];
     });
   }
 
