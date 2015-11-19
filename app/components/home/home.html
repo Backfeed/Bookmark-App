@@ -5,15 +5,21 @@
     <div class="text-center">
       <img class="img-responsive center-block" src="/assets/images/main-logo.png" alt="">
       <form class="search-form" ng-submit="ctrl.search()">
-        <md-input-container class="md-block" layout>
-          <input type="search" ng-model="ctrl.searchQuery" placeholder="Search Tags/Links" flex>
 
+        <md-autocomplete
+            md-selected-item="ctrl.selectedSearchTag"
+            md-search-text="ctrl.searchText"
+            md-selected-item-change="ctrl.search()"
+            md-items="item in ctrl.refreshTagsToSelectFrom(ctrl.searchText)"
+            md-item-text="item.name"
+            md-min-length="2"
+            required
+            placeholder="Search Tags / Links">
+            <md-item-template>
+              <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ item.name }}</span>
+            </md-item-template>
+        </md-autocomplete>
 
-
-          <md-button class="search-button md-icon-button md-primary" aria-label="Search Tags/Links">
-            <md-icon md-svg-icon="magnifying-glass"></md-icon>
-          </md-button>
-        </md-input-container>
       </form>
     </div>
     <div ng-if="ctrl.searchHasBeenMade &&
