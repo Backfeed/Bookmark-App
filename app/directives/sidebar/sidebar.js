@@ -15,7 +15,7 @@ function sidebar() {
 
 }
 
-function sidebarCtrl($rootScope, _DEV, Junk) {
+function sidebarCtrl($rootScope, _DEV, Junk, CurrentUser) {
 
   log = _DEV.log('SIDEBAR DIRECTIVE');
 
@@ -31,9 +31,8 @@ function sidebarCtrl($rootScope, _DEV, Junk) {
   init();
 
   function init() {
-
-    getTags();
-
+    if (CurrentUser.isLogged())
+      getTags();
   }
 
   function setTagAsSearchQuery(tagName) {
