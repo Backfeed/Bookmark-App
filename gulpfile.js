@@ -1,8 +1,10 @@
-var gulp         = require('gulp');
-var runSequence  = require('run-sequence');
-var less         = require('gulp-less');
-var autoprefixer = require('gulp-autoprefixer');
-var browserSync  = require('browser-sync').create();
+var gulp               = require('gulp');
+var runSequence        = require('run-sequence');
+var less               = require('gulp-less');
+var autoprefixer       = require('gulp-autoprefixer');
+var browserSync        = require('browser-sync').create();
+var historyApiFallback = require('connect-history-api-fallback');
+
 
 var base = 'app/';
 
@@ -38,7 +40,8 @@ gulp.task('autoprefix', ['compileLess'], function () {
 gulp.task('browser-sync', function() {
   browserSync.init({
     server: {
-      baseDir: "./app"
+      baseDir: "./app",
+      middleware: [ historyApiFallback() ]
     }
   });
 });
