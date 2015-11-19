@@ -60,12 +60,12 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
 
     log('submit', ctrl.newLinkUrl, 'evalution', ctrl.newLinkEvaluation, 'tags', ctrl.newLinkTags);
 
-    closeModal();
 
     ctrl.isFormProcessing = true;
 
     Junk.sendLink(ctrl.newLinkUrl, ctrl.newLinkEvaluation, ctrl.newLinkTags).then(
       function(response) {
+        closeModal();
         ctrl.isFormProcessing = false;
         log('CB: submit', response);
         openAddLinkResponseModal(response === 'link exists');
@@ -73,6 +73,11 @@ function AddLinkModalCtrl($rootScope, $uibModalInstance, $uibModal, _DEV, Helper
       function(err) {
         ctrl.isFormProcessing = false;
         log('CB: submit: Error', err);
+        if (err.data && err.data.message) {
+          alert(err.data.message);
+        } else {
+          alert('We are sorry, there was an error adding your link. Please try again.');
+        }
       }
     );
 
