@@ -2,7 +2,7 @@
   <form>
     <input type="email" placeholder="email" ng-model="ctrl.email" required>
     <input type="password" placeholder="password" ng-model="ctrl.password" required>
-    <button ng-click="ctrl.signin()" type="button">Signin</button>
-    <button ng-click="ctrl.signup()" type="button">Signup</button>
+    <button ng-click="ctrl.signin()" type="button" ng-disabled="ctrl.isProcessing">Signin</button>
+    <button ng-click="ctrl.signup()" type="button" ng-disabled="ctrl.isProcessing">Signup</button>
   </form>
 </div>

@@ -5,8 +5,6 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
-  var allTags = [];
-
   return {
 
     signup: signup,
@@ -25,15 +23,9 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   function signin(email, password) {
     return Resource.get('qrate/agents/login?email=' + email + '&password=' + password)
-    .then(
-      function(currentUser) {
-        return CurrentUser.set(currentUser);
-      },
-      function(err) {
-        alert("signin error check console!");
-        log(err);
-      }
-    );
+            .then(function(currentUser) {
+              return CurrentUser.set(currentUser);
+            });
   }
 
   function signup(email, password) {
@@ -41,21 +33,13 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       email: email,
       password: password
     })
-    .then(
-      function(currentUser) {
-        return CurrentUser.set(currentUser);
-      },
-      function(err) {
-        alert('signup error check console!');
-        log(err);
-      }
-    );
+    .then(function(currentUser) {
+      return CurrentUser.set(currentUser);
+    });
   }
 
   function getAllTags() {
-    return Resource.get('tags').then(function(tags) {
-      return allTags = tags;
-    });
+    return Resource.get('tags');
   }
 
   function getTagsByQuery(query, tagsNamesToExclude) {
