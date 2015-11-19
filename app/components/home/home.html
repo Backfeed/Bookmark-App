@@ -79,20 +79,25 @@
               </li>
 
               <li class="new-link-tag">
-                <form ng-submit="ctrl.addTagToLink($select, link)">
-                  <ui-select reset-search-input="true" ng-model="newTag" on-select="ctrl.addTagToLink($select, link)">
 
-                    <ui-select-match placeholder="Tag it">{{ $item.name }}</ui-select-match>
+                <form ng-submit="ctrl.addTagToLink(newTag, link)">
 
-                    <ui-select-choices repeat="tag in ctrl.tagsToSelectFrom" refresh="ctrl.refreshTagsToSelectFrom($select.search, link.tags)" refresh-delay="50">
+                  <md-autocomplete
+                      md-selected-item="newTag.selected"
+                      md-search-text="newTag.searchText"
+                      md-selected-item-change="ctrl.addTagToLink(newTag, link)"
+                      md-items="item in ctrl.refreshTagsToSelectFrom(newTag.searchText)"
+                      md-item-text="item.name"
+                      md-min-length="2"
+                      required
+                      placeholder="Add Tag">
+                      <md-item-template>
+                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ item.name }}</span>
+                      </md-item-template>
+                  </md-autocomplete>
 
-                      <div class="select-contributor flex">
-                        <div>{{ tag.name }}</div>
-                      </div>
-
-                    </ui-select-choices>
-                  </ui-select>
                 </form>
+
               </li>
             </ul>
 

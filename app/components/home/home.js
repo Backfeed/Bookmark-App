@@ -94,14 +94,19 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   }
 
-  function addTagToLink($select, link) {
-    var tagName = $select.selected.name;
+  function addTagToLink(newTag, link) {
+    // Safety check for resetting autocomplete after adding a tag
+    if (!newTag || (!newTag.selected && !newTag.searchText) )
+      return;
+
+    var tagName = newTag.searchText || !newTag.selected;
     log('add tag', tagName, 'to link with url', link.url);
+
     Junk.addTagToLink(tagName, link.url).then(function(response) {
       log('CB: add tag to link', response);
+      newTag.searchText = "";
+      newTag.selected = null;
       link.tags.push(response.tags[0]);
-      $select.selected = '';
-      $select.items = [];
     });
   }
 
