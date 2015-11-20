@@ -5,10 +5,15 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
 
   var log = _DEV.log('JUNK SERVICE');
 
+  var linksSearchResultsPage = 1;
+  var linksSearchQuery = '';
+  var lastLinksSearchResultsPage = false;
+
   return {
 
     signup: signup,
     signin: signin,
+    loadMoreLinksSearchResults: loadMoreLinksSearchResults,
     getAllTags: getAllTags,
     getTagsByQuery: getTagsByQuery,
     endorseTag: endorseTag,
@@ -36,6 +41,18 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     .then(function(currentUser) {
       return CurrentUser.set(currentUser);
     });
+  }
+
+  function loadMoreLinksSearchResults() {
+    if (lastLinksSearchResultsPage) {
+      log('last page so don\'t loadMoreLinksSearchResults by query', linksSearchQuery, 'page number', linksSearchResultsPage);
+      return 'last page';
+    }
+
+
+    linksSearchResultsPage++;
+    log('loadMoreLinksSearchResults by query', linksSearchQuery, 'page number', linksSearchResultsPage);
+    return getLinksAndTagsByQuery(linksSearchQuery, linksSearchResultsPage);
   }
 
   function getAllTags() {
@@ -80,8 +97,16 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
     });
   }
 
-  function getLinksAndTagsByQuery(query) {
-    return Resource.get('search?query=' + query);
+  function getLinksAndTagsByQuery(query, pageNumber) {
+    lastLinksSearchResultsPage = false;
+    linksSearchQuery = query;
+    linksSearchResultsPage = pageNumber || 1;
+    return Resource.get('search?query=' + query + '&pageNumber=' + linksSearchResultsPage).then(function(response) {
+      if (response.links.length < 10)
+        lastLinksSearchResultsPage = true;
+
+      return response;
+    });
   }
 
   function getLinksByTag(tagName) {

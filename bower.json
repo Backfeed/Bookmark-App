@@ -16,6 +16,8 @@
     "ngAnimate": "*",
     "angular-aria": "~1.4.7",
     "satellizer": "~0.13.0",
-    "angular-gravatar": "~0.4.1"
+    "angular-gravatar": "~0.4.1",
+    "ngInfiniteScroll": "~1.2.1",
+    "jquery": "~2.1.4"
   }
 }

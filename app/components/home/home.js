@@ -4,20 +4,23 @@ angular.module('qrate.components.home', [
 
 .controller('Home', Home);
 
-function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
+function Home($q, $scope, $timeout, $state,  _DEV, Helpers, Junk) {
 
   var log = _DEV.log('HOME CTRL');
 
   var ctrl = this;
 
+
   angular.extend(ctrl, {
     search: search,
+    loadMoreLinksSearchResults: loadMoreLinksSearchResults,
     evaluateLink: evaluateLink,
     endorseTag: endorseTag,
     DEendorseTag: DEendorseTag,
     setTagAsSearchQuery: setTagAsSearchQuery,
     refreshTagsToSelectFrom: refreshTagsToSelectFrom,
     addTagToLink: addTagToLink,
+    waitingForLinksResults: false,
     searchText: undefined,
     searchHasBeenMade: false, // temp until we move search results to child state
     selectedSearchTag: undefined,
@@ -45,6 +48,22 @@ function Home($scope, $timeout, $state,  _DEV, Helpers, Junk) {
       ctrl.searchHasBeenMade = true;
       ctrl.linksSearchResults = response.links;
       ctrl.tagsSearchResults = response.tags;
+    });
+  }
+
+  function loadMoreLinksSearchResults() {
+    ctrl.waitingForLinksResults = true;
+    log('load more links');
+    $q.when(Junk.loadMoreLinksSearchResults()).then(function(response) {
+      log('CB: load more links', response);
+      
+      if (response === 'last page') {
+        ctrl.waitingForLinksResults = false;
+        return;
+      }
+
+      ctrl.linksSearchResults = ctrl.linksSearchResults.concat(response.links);
+      ctrl.waitingForLinksResults = false;
     });
   }
 

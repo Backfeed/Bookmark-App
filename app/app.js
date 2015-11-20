@@ -2,6 +2,7 @@ angular.module('qrate', [
 
   // VENDORS
   'ui.router', 
+  'infinite-scroll',
   'ui.bootstrap.modal',
   'ui.bootstrap.tooltip',
   'ui.bootstrap.popover',

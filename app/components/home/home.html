@@ -33,7 +33,7 @@
       <md-button class="md-raised md-primary" ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">{{ tag.name }} {{ tag.linksCount }}</md-button>
     </section>
 
-    <div ng-if="ctrl.linksSearchResults.length">
+    <div ng-if="ctrl.linksSearchResults.length" infinite-scroll="ctrl.loadMoreLinksSearchResults()" infinite-scroll-distance="2" infinite-scroll-disabled="ctrl.waitingForLinksResults">
       <ul class="links-list">
         <li ng-repeat="link in ctrl.linksSearchResults">
           <md-card>
