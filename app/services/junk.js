@@ -49,9 +49,9 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       return 'last page';
     }
 
-
     linksSearchResultsPage++;
     log('loadMoreLinksSearchResults by query', linksSearchQuery, 'page number', linksSearchResultsPage);
+
     return getLinksAndTagsByQuery(linksSearchQuery, linksSearchResultsPage);
   }
 
@@ -68,15 +68,6 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       creator: CurrentUser.get().id,
       contributionId: tagId,
       evaluation: 0
-    }).then(function(response) {
-      if (response.senderTokenReputationChange && 
-          response.senderTokenReputationChange.agentNewReputationBalance) {
-        CurrentUser.update({
-          tokens: response.senderTokenReputationChange.agentNewReputationBalance
-        });
-      }
-
-      return response;
     });
   }
 
@@ -85,15 +76,6 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
       creator: CurrentUser.get().id,
       contributionId: tagId,
       evaluation: -1
-    }).then(function(response) {
-      if (response.senderTokenReputationChange && 
-          response.senderTokenReputationChange.agentNewReputationBalance) {
-        CurrentUser.update({
-          tokens: response.senderTokenReputationChange.agentNewReputationBalance
-        });
-      }
-
-      return response;
     });
   }
 
@@ -122,16 +104,6 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
         url: linkUrl,
         tags: [tagName]
       }
-    }).then(function(response) {
-      if (response.contributorBalance && 
-          response.contributorBalance[0] &&
-          response.contributorBalance[0].newTokenBalance) {
-        CurrentUser.update({
-          tokens: response.contributorBalance[0].newTokenBalance
-        });
-      }
-
-      return response;
     });
   }
 
@@ -155,16 +127,6 @@ function Junk($q, $localStorage, _DEV, Helpers, CurrentUser, Resource) {
         evaluation: evaluation,
         tags: tagNames
       }
-    }).then(function(response) {
-      if (response.contributorBalance && 
-          response.contributorBalance[0] &&
-          response.contributorBalance[0].newTokenBalance) {
-        CurrentUser.update({
-          tokens: response.contributorBalance[0].newTokenBalance
-        });
-      }
-
-      return response;
     });
   }
 
