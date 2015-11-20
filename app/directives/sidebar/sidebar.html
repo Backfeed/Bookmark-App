@@ -19,7 +19,7 @@
                     layout-align="space-between" 
                     ng-click="ctrl.setTagAsSearchQuery(tag.name)"
                     class="pointer">
-        <span>{{ tag.name }}</span>
+        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ tag.name }}</span>
         <span>{{ tag.linksCount }}</span>
       </md-list-item>
     </md-list>

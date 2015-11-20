@@ -1,4 +1,4 @@
-<sidebar flex="initial" style="width: 250px;" class="hide-sm"></sidebar>
+<sidebar flex="initial" style="width: 250px;" class="hide-sm" search-text="ctrl.searchText"></sidebar>
 
 <section class="main-section" flex="auto">
   <div class="main-section-inner">
@@ -34,7 +34,9 @@
     </div>
 
     <section ng-if="ctrl.tagsSearchResults.length" class="tags-search-results" layout="row" layout-align="center center" layout-wrap>
-      <md-button class="md-raised md-primary" ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">{{ tag.name }} {{ tag.linksCount }}</md-button>
+      <md-button class="md-raised md-primary" ng-repeat="tag in ctrl.tagsSearchResults" ng-click="ctrl.setTagAsSearchQuery(tag.name)">
+        <div md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ tag.name }} {{ tag.linksCount }}</div>
+      </md-button>
     </section>
 
     <div ng-if="ctrl.linksSearchResults.length" infinite-scroll="ctrl.loadMoreLinksSearchResults()" infinite-scroll-distance="2" infinite-scroll-disabled="ctrl.waitingForLinksResults">
@@ -42,10 +44,10 @@
         <li ng-repeat="link in ctrl.linksSearchResults">
           <md-card>
             <div class="link-heading" layout layout-align="flex-start">
-              <h3 class="link-title">{{ link.title }}</h3>
+              <h3 class="link-title" md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ link.title }}</h3>
             </div>
             <div class="link-meta" layout layout-align="space-between">
-              <a class="link-url" ng-href="{{ link.url }}" target="_blank">{{ link.url }}</a>
+              <a class="link-url" ng-href="{{ link.url }}" target="_blank" md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ link.url }}</a>
 
               <star-rating readonly="link.currentUserEvaluation" ng-model="link.currentUserEvaluation" on-rating-select="ctrl.evaluateLink(link)"></star-rating>
             </div>
@@ -78,7 +80,7 @@
                   <span class="tag-endorsements">{{ tag.endorsmentCount }}</span>
                   <md-icon md-svg-icon="thumbs-up"></md-icon>
                   <span class="vertical-separator"></span>
-                  <span class="tag-name">{{ tag.name }}</span>
+                  <span class="tag-name" md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ tag.name }}</span>
                 </div>
               </li>
 

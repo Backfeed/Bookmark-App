@@ -7,7 +7,7 @@ function sidebar() {
 
     templateUrl: 'directives/sidebar/sidebar.html',
     bindToController: true,
-    scope: {},
+    scope: { searchText: '='},
     controllerAs: 'ctrl',
     controller: sidebarCtrl
 
