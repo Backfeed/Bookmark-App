@@ -20,6 +20,10 @@
             </md-item-template>
         </md-autocomplete>
 
+        <md-button class="search-button md-icon-button md-primary" aria-label="Search Tags/Links">
+          <md-icon md-svg-icon="magnifying-glass"></md-icon>
+        </md-button>
+
       </form>
     </div>
     <div ng-if="ctrl.searchHasBeenMade &&
@@ -90,7 +94,7 @@
                       md-item-text="item.name"
                       md-min-length="2"
                       required
-                      placeholder="Add Tag">
+                      placeholder="Tag It">
                       <md-item-template>
                         <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ item.name }}</span>
                       </md-item-template>
