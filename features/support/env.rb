@@ -10,6 +10,7 @@ module HasBrowser
   begin
   	$driver = Selenium::WebDriver.for :remote, :url => "http://localhost:9515"
   rescue Exception => e
+    puts e
   	puts "\n\nDid you forget to run Chromedriver again?"
   	puts "Go. Don't let me catch you make mistakes like that again."
     puts "(Psst, it's in the support folder)"
