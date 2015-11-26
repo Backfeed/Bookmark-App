@@ -8,8 +8,8 @@ Given(/^I'm logged in$/) do
     password = $driver.find_element(:css, 'input[type="password"]')
     sign_in = $driver.find_element(:css, 'button[ng-click="ctrl.signin()"')
 
-    email.send_keys "PLACEHOLDER"
-    password.send_keys "PLACEHOLDER"
+    email.send_keys "testy@backfeed.cc"
+    password.send_keys "password"
     sign_in.click
   end
 end
@@ -17,8 +17,8 @@ end
 When(/^I open the Add Link form$/) do
   $driver.find_element(:css, 'button[ng-click="ctrl.openAddLinkModal()"').click
 
-  @@url_field = $driver.find_element(:css, 'input[type="url"]')
-  @@tag_field = $driver.find_element(:css, 'input[type="text"]')
+  @url_field = $driver.find_element(:css, 'input[type="url"]')
+  @tag_field = $driver.find_element(:css, 'input[type="text"]')
 end
 
 Given(/^link "([^"]*)" doesn't exist in the library$/) do |arg1|
@@ -26,7 +26,7 @@ Given(/^link "([^"]*)" doesn't exist in the library$/) do |arg1|
 end
 
 When(/^I enter(?: an?)?(?: invalid)? (?:url|link) "([^"]*)" into the form$/) do |url|
-  @@url_field.send_keys(url)
+  @url_field.send_keys(url)
 end
 
 When(/^(?:I )?give it a rating(?: of ([1-5])(?: stars?)?)?$/) do |stars|
@@ -49,7 +49,7 @@ When(/^I submit it$/) do
   $driver.find_element(:css, "div.modal-footer > button").click
 end
 
-Then(/^it should notify me that: (.*)$/) do
+Then(/^it should notify me that:? (.+)$/) do |reason|
   pending "Find out how to read material design notifications"
 end
 
