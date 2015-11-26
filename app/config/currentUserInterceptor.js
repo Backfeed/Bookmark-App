@@ -13,14 +13,14 @@ function httpResponseInterceptor($localStorage) {
 
     response: function (response) {
       
-      if (response && response.currentUser) {
-        currentUserResponse = response.currentUser;
+      if (response && response.data && response.data.currentUser) {
+        currentUserResponse = response.data.currentUser;
 
         if (currentUserResponse.tokens)
-          angular.extend($localStorage.qrateCurrentUser.tokens, currentUserResponse.tokens);
+          $localStorage.qrateCurrentUser.tokens = currentUserResponse.tokens;
 
         if (currentUserResponse.reputation)
-          angular.extend($localStorage.qrateCurrentUser.reputation, currentUserResponse.reputation);
+          $localStorage.qrateCurrentUser.reputation = currentUserResponse.reputation;
 
         currentUserResponse = {};
 
