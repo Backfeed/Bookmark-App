@@ -49,7 +49,7 @@
             <div class="link-meta" layout layout-align="space-between">
               <a class="link-url" ng-href="{{ link.url }}" target="_blank" md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ link.url }}</a>
 
-              <star-rating readonly="link.currentUserEvaluation" ng-model="link.currentUserEvaluation" on-rating-select="ctrl.evaluateLink(link)"></star-rating>
+              <star-rating ng-model="link.currentUserEvaluation" readonly="link.currentUserEvaluation" ng-class="{ 'disabled': link.currentUserEvaluation }" on-rating-select="ctrl.evaluateLink(link)"></star-rating>
             </div>
 
             <ul class="link-tags">
