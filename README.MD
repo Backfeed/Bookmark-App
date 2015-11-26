@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Backfeed/Qrate.svg?branch=master)](https://travis-ci.org/Backfeed/Qrate)
 INSTALL
 =======
 
