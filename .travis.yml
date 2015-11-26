@@ -6,11 +6,20 @@ cache:
 notifications:
   email: false
 node_js:
-  - '4'
+  - '4.0'
 before_install:
   - npm i -g npm@^2.0.0
+  - rvm get head
+  - rvm reload
+  - rvm get stable
+install:
+  - gem install rspec
+  - gem install selenium-webdriver
+  - gem install cucumber
 before_script:
   - npm prune
+script: 
+  - cucumber
 after_success:
   - npm run semantic-release
 branches:
