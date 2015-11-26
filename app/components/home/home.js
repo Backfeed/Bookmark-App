@@ -39,12 +39,15 @@ function Home($q, $scope, $timeout, $state,  _DEV, Helpers, Junk) {
   function search() {
     resetSearchResults();
 
+    ctrl.waitingForLinksResults = true;
+
     var searchText = ctrl.searchText || ctrl.selectedSearchTag.name;
 
     log("links and tags by query", searchText);
 
     Junk.getLinksAndTagsByQuery(searchText).then(function(response) {
       log("CB links and tags by query", response);
+      ctrl.waitingForLinksResults = false;
       ctrl.searchHasBeenMade = true;
       ctrl.linksSearchResults = response.links;
       ctrl.tagsSearchResults = response.tags;
