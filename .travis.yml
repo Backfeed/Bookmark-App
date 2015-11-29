@@ -13,7 +13,6 @@ before_install:
   - rvm reload
   - rvm get stable
 install:
-  - gem install rspec
   - gem install selenium-webdriver
   - gem install cucumber
 before_script:
